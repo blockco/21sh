@@ -2,7 +2,7 @@ CC =	gcc
 
 FLAG =	-ltermcap -Wall -Wextra -Werror -o
 
-NAME =	minishell
+NAME =	21sh
 
 SRCS =	libft/ft_putchar.c \
 		libft/ft_putstr.c \

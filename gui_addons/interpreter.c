@@ -15,6 +15,7 @@
 void	printfirstpath(char *cwd)
 {
 	int i;
+	char *tmp;
 
 	i = ft_strlen(cwd);
 	i--;
@@ -22,17 +23,24 @@ void	printfirstpath(char *cwd)
 		i--;
 	i++;
 	while (cwd[i])
-		ft_putchar(cwd[i++]);
+	{
+		tmp = ft_strnew(2);
+		tmp[0] = cwd[i++];
+		insert_char(tmp);
+		free (tmp);
+		// ft_putchar(cwd[i++]);
+	}
 }
 
 void	print_interp(void)
 {
 	char	*cwd;
 	char	buff[PATH_MAX + 1];
+	LEFT_LN;
 
 	cwd = getcwd(buff, PATH_MAX + 1);
-	ft_putstr("[");
+	insert_str("[");
 	printfirstpath(cwd);
-	ft_putstr("]");
-	ft_putstr(" ༼ つ ͠° ͟ ͟ʖ ͡° ༽つ > ");
+	insert_str("]");
+	// ft_putstr(" ༼ つ ͠° ͟ ͟ʖ ͡° ༽つ > ");
 }

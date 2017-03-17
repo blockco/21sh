@@ -32,23 +32,32 @@
 # define ENDL '\n'
 # define BUFF_SIZE 1
 
-# define CLEAR			tputs(tgetstr("cl", NULL), 1, ft_putchar)
-# define STR_CURSOR_MV	tputs(tgetstr("ti", NULL), 1, ft_putchar)
-# define END_CURSOR_MV	tputs(tgetstr("te", NULL), 1, ft_putchar)
-# define LINE			tputs(tgetstr("cr", NULL), 1, ft_putchar)
-# define SCREEN			tputs(tgetstr("ho", NULL), 1, ft_putchar)
-# define DOWN			tputs(tgetstr("do", NULL), 1, ft_putchar)
-# define UP				tputs(tgetstr("up", NULL), 1, ft_putchar)
-# define RIGHT			tputs(tgetstr("nd", NULL), 1, ft_putchar)
-# define LEFT			tputs(tgetstr("le", NULL), 1, ft_putchar)
-# define DEL_MODE_ON	tputs(tgetstr("dm", NULL), 1, ft_putchar)
-# define DEL_CHAR		tputs(tgetstr("dc", NULL), 1, ft_putchar)
-# define DEL_MODE_OFF	tputs(tgetstr("ed", NULL), 1, ft_putchar)
-# define INSERT_MODE_ON	tputs(tgetstr("im", NULL), 1, ft_putchar)
-# define INSERT_CHAR	tputs(tgetstr("ic", NULL), 1, ft_putchar)
-# define INSRT_MODE_OFF	tputs(tgetstr("ei", NULL), 1, ft_putchar)
-# define DL				tputs(tgetstr("dl", NULL), 1, ft_putchar)
-# define CLEAR_LN		tputs(tgetstr("cd", NULL), 1, ft_putchar)
+# define CLEAR				tputs(tgetstr("cl", NULL), 1, ft_putchar)
+# define STR_CURSOR_MV		tputs(tgetstr("ti", NULL), 1, ft_putchar)
+# define END_CURSOR_MV		tputs(tgetstr("te", NULL), 1, ft_putchar)
+# define LINE				tputs(tgetstr("cr", NULL), 1, ft_putchar)
+# define SCREEN				tputs(tgetstr("ho", NULL), 1, ft_putchar)
+# define DOWN				tputs(tgetstr("do", NULL), 1, ft_putchar)
+# define UP					tputs(tgetstr("up", NULL), 1, ft_putchar)
+# define RIGHT				tputs(tgetstr("nd", NULL), 1, ft_putchar)
+# define LEFT				tputs(tgetstr("le", NULL), 1, ft_putchar)
+# define DEL_MODE_ON		tputs(tgetstr("dm", NULL), 1, ft_putchar)
+# define DEL_CHAR			tputs(tgetstr("dc", NULL), 1, ft_putchar)
+# define DEL_MODE_OFF		tputs(tgetstr("ed", NULL), 1, ft_putchar)
+# define INSERT_MODE_ON		tputs(tgetstr("im", NULL), 1, ft_putchar)
+# define INSERT_CHAR		tputs(tgetstr("ic", NULL), 1, ft_putchar)
+# define INSERT_MODE_OFF	tputs(tgetstr("ei", NULL), 1, ft_putchar)
+# define DL					tputs(tgetstr("dl", NULL), 1, ft_putchar)
+# define CLEAR_LN			tputs(tgetstr("cd", NULL), 1, ft_putchar)
+# define LEFT_LN			tputs(tgetstr("ll", NULL), 1, ft_putchar)
+# define STR_LEFT			tputs(tgetstr("cr", NULL), 1, ft_putchar)
+# define WRAP_TERM			tputs(tgetstr("ho", NULL), 1, ft_putchar)
+
+# define TC_HID_CURSOR		tputs(tgetstr("vi", NULL), 1, ft_putchar)
+# define TC_STR_MV_CURSOR	tputs(tgetstr("ti", NULL), 1, ft_putchar)
+
+# define LEFT_MARGIN		tputs(tgetstr("rs", NULL), 1, ft_putchar)
+
 
 # define C_NORMAL			ft_putstr_fd("\e[0;39;48;5;239m", 2)
 # define C_CURSOR			ft_putstr_fd("\e[4;39;48;5;239m", 2)
@@ -59,6 +68,7 @@
 typedef struct	s_shell
 {
 	struct termios	old;
+	struct termios	*now;
 }				t_shell;
 
 typedef struct	s_parse
