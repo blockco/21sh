@@ -37,20 +37,6 @@ void	insert_char(char *c)
 	INSERT_MODE_OFF;
 }
 
-// void	insert_str(char *c)
-// {
-// 	int i;
-//
-// 	i = 0;
-// 	INSERT_MODE_ON;
-// 	while (c[i])
-// 	{
-// 		insert_char(&c[i]);
-// 		i++;
-// 	}
-// 	INESRT_MODE_OFF;
-// }
-
 void return_print()
 {
 	char *str1;
