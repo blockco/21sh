@@ -15,32 +15,25 @@
 void	printfirstpath(char *cwd)
 {
 	int i;
-	char *tmp;
 
 	i = ft_strlen(cwd);
 	i--;
 	while (cwd[i] != '/')
 		i--;
 	i++;
-	while (cwd[i])
-	{
-		tmp = ft_strnew(2);
-		tmp[0] = cwd[i++];
-		insert_char(tmp);
-		free (tmp);
-		// ft_putchar(cwd[i++]);
-	}
+	cwd += i;
+	ft_putstr(cwd);
+	cwd -= i;
 }
 
 void	print_interp(void)
 {
 	char	*cwd;
-	char	buff[PATH_MAX + 1];
-	LEFT_LN;
 
-	cwd = getcwd(buff, PATH_MAX + 1);
-	insert_str("[");
+	cwd = getcwd(NULL, PATH_MAX + 1);
+	ft_putstr("[");
 	printfirstpath(cwd);
-	insert_str("]");
-	// ft_putstr(" ༼ つ ͠° ͟ ͟ʖ ͡° ༽つ > ");
+	ft_putstr("]");
+	ft_putstr(" ༼ つ ͠° ͟ ͟ʖ ͡° ༽つ > ");
+	free(cwd);
 }

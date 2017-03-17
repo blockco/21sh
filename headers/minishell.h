@@ -30,7 +30,7 @@
 # include "vector.h"
 # include <signal.h>
 # define ENDL '\n'
-# define BUFF_SIZE 1
+# define BUFF_SIZE 4
 
 # define CLEAR				tputs(tgetstr("cl", NULL), 1, ft_putchar)
 # define STR_CURSOR_MV		tputs(tgetstr("ti", NULL), 1, ft_putchar)
@@ -65,11 +65,39 @@
 # define C_BOTH				ft_putstr_fd("\e[4;30;107m", 2)
 # define COLOR_NOPE			ft_putstr_fd("\e[0m", 2)
 
+# define K_UP				4283163
+# define K_DOWN				4348699
+# define K_LEFT				4479771
+# define K_RIGHT			4414235
+# define K_HOME				4741915
+# define K_END				4610843
+# define K_ESC				27
+# define K_ENTER			10
+# define K_BACKSP			127
+# define K_DEL				2117294875
+# define K_TAB				9
+# define K_SPACE			32
+# define K_F1				5263131
+# define K_F2				5328667
+
+typedef struct	s_command
+{
+	char **cmds;
+}				t_command;
+
 typedef struct	s_shell
 {
 	struct termios	old;
 	struct termios	*now;
+	t_vector		*hisroty;
+	t_vector		*sorted_h;
+	t_command		*cmd;
 }				t_shell;
+
+// typedef struct s_lineman
+// {
+//
+// }
 
 typedef struct	s_parse
 {
@@ -118,7 +146,13 @@ void			ft_til(t_vector *vect, char *path, char *cwd);
 void			checkenv(char **temp, t_vector *vect);
 char			**parseinput(char *str);
 int				checklocsp(char *test, char **temp, t_vector *vect);
+
+
 void			insert_char(char *c);
 void			insert_str(char *c);
+int				setup_term(t_shell *shell);
+
+//checking data
+int check_char(char *data);
 
 #endif
