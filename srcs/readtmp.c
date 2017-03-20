@@ -30,14 +30,16 @@ char	*read_tmp()
 		if (bytes_read > 0)
 			vect_insert(vect, vect->size, &ret);
 		bytes_read += read(0, str1, BUFF_SIZE);
-		if (bytes_read > 1)
-			ret = ft_strjoin(ret, (const char*)str1);
-		else
-			ret = ft_strdup(str1);
 		if (check_char(str1))
 		{
-			insert_str(str1);
+			if (bytes_read > 1)
+			ret = ft_strjoin(ret, (const char*)str1);
+			else
+			ret = ft_strdup(str1);
+			insert_str(str1);//whats printing to s
 		}
+		else
+			ret = ft_strjoin(ret, "");
 		if (str1[0] == 13)
 			break;
 	}

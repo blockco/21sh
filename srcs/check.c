@@ -2,9 +2,9 @@
 
 int check_char(char *data)
 {
-	if (data[0] > 32 && data[0] < 127)
+	if (data[0] > 31 && data[0] < 127)
 		return 1;
-	// else if (K_UP == (int)data[0])
+	// else if (ft_strcmp(data, K_UP))
 	// 	return 1;
 	// ft_putstr(data);
 	return 0;
