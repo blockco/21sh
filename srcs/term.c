@@ -19,5 +19,14 @@ int			setup_term(t_shell *shell)
 	if (tcsetattr(0, TCSAFLUSH, &new) < 0)
 		return (-1);
 	shell->now = &new;
+	initshellstruct(shell);
 	return (1);
+}
+
+void initshellstruct(t_shell *shell)
+{
+	shell->history = vect_new(32, sizeof(char*));
+	shell->sorted_h = vect_new(32, sizeof(char*));
+	shell->cmd = malloc(sizeof(t_command));
+	shell->lineinfo = malloc(sizeof(t_lineman));
 }

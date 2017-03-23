@@ -80,24 +80,33 @@
 # define K_F1				5263131
 # define K_F2				5328667
 
+# define C_UP				"\[A"
+# define C_LEFT				"\[D"
+# define C_RIGHT			"\[C"
+# define C_DOWN				"\[B"
+
 typedef struct	s_command
 {
 	char **cmds;
 }				t_command;
 
+typedef struct s_lineman
+{
+	int left;
+	int right;
+	int up;
+	int down;
+}				t_lineman;
+
 typedef struct	s_shell
 {
 	struct termios	old;
 	struct termios	*now;
-	t_vector		*hisroty;
+	t_vector		*history;
 	t_vector		*sorted_h;
 	t_command		*cmd;
+	t_lineman		*lineinfo;
 }				t_shell;
-
-// typedef struct s_lineman
-// {
-//
-// }
 
 typedef struct	s_parse
 {
@@ -151,6 +160,7 @@ int				checklocsp(char *test, char **temp, t_vector *vect);
 void			insert_char(char *c);
 void			insert_str(char *c);
 int				setup_term(t_shell *shell);
+void			initshellstruct(t_shell *shell);
 
 //checking data
 int check_char(char *data);

@@ -12,7 +12,28 @@
 
 #include "../headers/minishell.h"
 
-char	*read_tmp()
+void checkarrowkeys(char *str1, t_shell *shell)
+{
+	if (str1[2] == 'C')
+	{
+		;
+	}
+	else if (str1[2] == 'A')
+	{
+		;
+	}
+	else if (str1[2] == 'B')
+	{
+		;
+	}
+	else if (str1[2] == 'D')
+	{
+		;
+	}
+	shell->lineinfo->left = 0;
+}
+
+char	*read_tmp(t_shell *shell)
 {
 	char		*str1;
 	int			bytes_read;
@@ -33,19 +54,39 @@ char	*read_tmp()
 		if (check_char(str1))
 		{
 			if (bytes_read > 1)
-			ret = ft_strjoin(ret, (const char*)str1);
+				ret = ft_strjoin(ret, (const char*)str1);
 			else
-			ret = ft_strdup(str1);
-			insert_str(str1);//whats printing to s
+			{
+				ret = ft_strdup(str1);
+			}
+			ft_putstr(str1);//whats printing to screen
 		}
+		// else if (str1[2] == 'C')
+		// {
+		// 	insert_str(str1);
+		// 	ret = ft_strjoin(ret, "");
+		// }
+		// else if (str1[2] == 'A')
+		// {
+		// 	CLEAR;
+		// 	insert_str(vectspot(0, shell->history));
+		// 	ret = ft_strjoin(ret, "");
+		// }
 		else
+		{
+			checkarrowkeys(str1, shell);
 			ret = ft_strjoin(ret, "");
+		}
 		if (str1[0] == 13)
 			break;
 	}
+	// INSERT_MODE_ON;
+	// CLEAR;
+	// INSERT_MODE_OFF;
+	// LINE;
+	vect_insert(shell->history, shell->history->size, ft_strdup(ret));
 	insert_char("\n");
 	col_vect(vect);
 	ret[bytes_read - 1] = '\0';
-	LINE;
 	return (ret);
 }
