@@ -53,6 +53,9 @@
 # define STR_LEFT			tputs(tgetstr("cr", NULL), 1, ft_putchar)
 # define WRAP_TERM			tputs(tgetstr("ho", NULL), 1, ft_putchar)
 
+# define KEYS_ON			tputs(tgetstr("ks", NULL), 1, ft_putchar)
+# define KEYS_OFF			tputs(tgetstr("ke", NULL), 1, ft_putchar)
+
 # define TC_HID_CURSOR		tputs(tgetstr("vi", NULL), 1, ft_putchar)
 # define TC_STR_MV_CURSOR	tputs(tgetstr("ti", NULL), 1, ft_putchar)
 

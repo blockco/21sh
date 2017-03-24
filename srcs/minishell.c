@@ -53,6 +53,7 @@ int shellexit(t_shell *shell)
 {
 	if (tcsetattr(0, TCSAFLUSH, &shell->old) < 0)
 		return (-1);
+	KEYS_OFF;
 	return (0);
 }
 

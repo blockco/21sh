@@ -16,19 +16,31 @@ void checkarrowkeys(char *str1, t_shell *shell)
 {
 	if (str1[2] == 'C')
 	{
-		;
+		ft_putendl("here1");
+		CLEAR_LN;
 	}
 	else if (str1[2] == 'A')
 	{
-		;
+		ft_putendl("here2");
+		CLEAR_LN;
 	}
 	else if (str1[2] == 'B')
 	{
-		;
+		ft_putendl("here3");
+		CLEAR_LN;
 	}
 	else if (str1[2] == 'D')
 	{
-		;
+		ft_putendl("here4");
+		CLEAR_LN;
+	}
+	else if (str1[0] == 127)
+	{
+		// ft_putendl("backspace");
+		// ft_putstr(str1);
+		// CLEAR_LN;
+		LEFT;
+		DEL_CHAR;
 	}
 	shell->lineinfo->left = 0;
 }
@@ -59,19 +71,11 @@ char	*read_tmp(t_shell *shell)
 			{
 				ret = ft_strdup(str1);
 			}
-			ft_putstr(str1);//whats printing to screen
+			INSERT_MODE_ON;
+			ft_putstr(str1);
+			INSERT_MODE_OFF;
+			//whats printing to screen
 		}
-		// else if (str1[2] == 'C')
-		// {
-		// 	insert_str(str1);
-		// 	ret = ft_strjoin(ret, "");
-		// }
-		// else if (str1[2] == 'A')
-		// {
-		// 	CLEAR;
-		// 	insert_str(vectspot(0, shell->history));
-		// 	ret = ft_strjoin(ret, "");
-		// }
 		else
 		{
 			checkarrowkeys(str1, shell);
@@ -80,10 +84,6 @@ char	*read_tmp(t_shell *shell)
 		if (str1[0] == 13)
 			break;
 	}
-	// INSERT_MODE_ON;
-	// CLEAR;
-	// INSERT_MODE_OFF;
-	// LINE;
 	vect_insert(shell->history, shell->history->size, ft_strdup(ret));
 	insert_char("\n");
 	col_vect(vect);
