@@ -1,0 +1,236 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+minishell	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/README.md	/^# minishell$/;"	function	line:1
+21sh	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/README.md	/^# 21sh$/;"	function	line:21
+goback	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir_a.c	/^void	goback(t_vector *vect, char *cwd)$/;"	function	line:15	signature:(t_vector *vect, char *cwd)
+gohome	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir_a.c	/^void	gohome(t_vector *vect, char *cwd)$/;"	function	line:33	signature:(t_vector *vect, char *cwd)
+til_b	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir_a.c	/^char	*til_b(char *path, t_vector *vect)$/;"	function	line:50	signature:(char *path, t_vector *vect)
+ft_til	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir_a.c	/^void	ft_til(t_vector *vect, char *path, char *cwd)$/;"	function	line:69	signature:(t_vector *vect, char *path, char *cwd)
+changedirs	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir_a.c	/^void	changedirs(char *path, t_vector *vect)$/;"	function	line:88	signature:(char *path, t_vector *vect)
+extendrun	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/dispatch.c	/^int	extendrun(char **temp, t_vector *vect)$/;"	function	line:15	signature:(char **temp, t_vector *vect)
+runbuilt	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/dispatch.c	/^int	runbuilt(char **temp, t_vector *vect)$/;"	function	line:41	signature:(char **temp, t_vector *vect)
+findenvvar	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir.c	/^char	*findenvvar(t_vector *vect, char *str)$/;"	function	line:15	signature:(t_vector *vect, char *str)
+changeold	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir.c	/^void	changeold(int ret, t_vector *vect, char *cwd, int i)$/;"	function	line:32	signature:(int ret, t_vector *vect, char *cwd, int i)
+checkchange	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/changedir.c	/^void	checkchange(int i, char *path)$/;"	function	line:44	signature:(int i, char *path)
+getenv_b	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/b_env.c	/^void	getenv_b(t_vector *vect)$/;"	function	line:15	signature:(t_vector *vect)
+cpenv_b	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/b_env.c	/^char	**cpenv_b(t_vector *vect)$/;"	function	line:27	signature:(t_vector *vect)
+makedata	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/b_env.c	/^char	*makedata(char *key, char *val)$/;"	function	line:43	signature:(char *key, char *val)
+setenv_b	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/b_env.c	/^void	setenv_b(char *key, char *val, t_vector *vect)$/;"	function	line:51	signature:(char *key, char *val, t_vector *vect)
+unsetenv_b	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/b_env.c	/^void	unsetenv_b(char *key, t_vector *vect)$/;"	function	line:68	signature:(char *key, t_vector *vect)
+printend	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/echo_b.c	/^void	printend(int x, int nflag)$/;"	function	line:15	signature:(int x, int nflag)
+nflagfind	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/echo_b.c	/^int		nflagfind(char *temp)$/;"	function	line:28	signature:(char *temp)
+echo_b	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/builtins/echo_b.c	/^void	echo_b(char **temp)$/;"	function	line:42	signature:(char **temp)
+CC	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/Makefile	/^CC =	gcc$/;"	macro	line:1
+FLAG	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/Makefile	/^FLAG =	-ltermcap -Wall -Wextra -Werror -o$/;"	macro	line:3
+NAME	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/Makefile	/^NAME =	21sh$/;"	macro	line:5
+SRCS	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/Makefile	/^SRCS =	libft\/ft_putchar.c \\$/;"	macro	line:7
+OBJS	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/Makefile	/^OBJS =	$(NAME)$/;"	macro	line:80
+printfirstpath	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/gui_addons/interpreter.c	/^void	printfirstpath(char *cwd)$/;"	function	line:15	signature:(char *cwd)
+print_interp	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/gui_addons/interpreter.c	/^void	print_interp(void)$/;"	function	line:29	signature:(void)
+MINISHELL_H	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define MINISHELL_H$/;"	macro	line:14
+ENDL	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define ENDL /;"	macro	line:32
+BUFF_SIZE	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define BUFF_SIZE /;"	macro	line:33
+CLEAR	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define CLEAR	/;"	macro	line:35
+STR_CURSOR_MV	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define STR_CURSOR_MV	/;"	macro	line:36
+END_CURSOR_MV	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define END_CURSOR_MV	/;"	macro	line:37
+LINE	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define LINE	/;"	macro	line:38
+SCREEN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define SCREEN	/;"	macro	line:39
+DOWN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define DOWN	/;"	macro	line:40
+UP	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define UP	/;"	macro	line:41
+RIGHT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define RIGHT	/;"	macro	line:42
+LEFT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define LEFT	/;"	macro	line:43
+DEL_MODE_ON	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define DEL_MODE_ON	/;"	macro	line:44
+DEL_CHAR	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define DEL_CHAR	/;"	macro	line:45
+DEL_MODE_OFF	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define DEL_MODE_OFF	/;"	macro	line:46
+INSERT_MODE_ON	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define INSERT_MODE_ON	/;"	macro	line:47
+INSERT_CHAR	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define INSERT_CHAR	/;"	macro	line:48
+INSERT_MODE_OFF	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define INSERT_MODE_OFF	/;"	macro	line:49
+DL	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define DL	/;"	macro	line:50
+CLEAR_LN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define CLEAR_LN	/;"	macro	line:51
+LEFT_LN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define LEFT_LN	/;"	macro	line:52
+STR_LEFT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define STR_LEFT	/;"	macro	line:53
+WRAP_TERM	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define WRAP_TERM	/;"	macro	line:54
+KEYS_ON	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define KEYS_ON	/;"	macro	line:56
+KEYS_OFF	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define KEYS_OFF	/;"	macro	line:57
+TC_HID_CURSOR	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define TC_HID_CURSOR	/;"	macro	line:59
+TC_STR_MV_CURSOR	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define TC_STR_MV_CURSOR	/;"	macro	line:60
+LEFT_MARGIN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define LEFT_MARGIN	/;"	macro	line:62
+C_NORMAL	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_NORMAL	/;"	macro	line:65
+C_CURSOR	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_CURSOR	/;"	macro	line:66
+C_SELECTED	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_SELECTED	/;"	macro	line:67
+C_BOTH	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_BOTH	/;"	macro	line:68
+COLOR_NOPE	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define COLOR_NOPE	/;"	macro	line:69
+K_UP	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_UP	/;"	macro	line:71
+K_DOWN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_DOWN	/;"	macro	line:72
+K_LEFT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_LEFT	/;"	macro	line:73
+K_RIGHT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_RIGHT	/;"	macro	line:74
+K_HOME	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_HOME	/;"	macro	line:75
+K_END	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_END	/;"	macro	line:76
+K_ESC	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_ESC	/;"	macro	line:77
+K_ENTER	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_ENTER	/;"	macro	line:78
+K_BACKSP	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_BACKSP	/;"	macro	line:79
+K_DEL	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_DEL	/;"	macro	line:80
+K_TAB	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_TAB	/;"	macro	line:81
+K_SPACE	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_SPACE	/;"	macro	line:82
+K_F1	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_F1	/;"	macro	line:83
+K_F2	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define K_F2	/;"	macro	line:84
+C_UP	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_UP	/;"	macro	line:86
+C_LEFT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_LEFT	/;"	macro	line:87
+C_RIGHT	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_RIGHT	/;"	macro	line:88
+C_DOWN	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^# define C_DOWN	/;"	macro	line:89
+s_command	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^typedef struct	s_command$/;"	struct	line:91
+cmds	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	char **cmds;$/;"	member	line:93	struct:s_command
+t_command	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^}				t_command;$/;"	typedef	line:94	typeref:struct:s_command
+s_lineman	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^typedef struct s_lineman$/;"	struct	line:96
+left	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int left;$/;"	member	line:98	struct:s_lineman
+right	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int right;$/;"	member	line:99	struct:s_lineman
+up	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int up;$/;"	member	line:100	struct:s_lineman
+down	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int down;$/;"	member	line:101	struct:s_lineman
+t_lineman	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^}				t_lineman;$/;"	typedef	line:102	typeref:struct:s_lineman
+s_shell	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^typedef struct	s_shell$/;"	struct	line:104
+old	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	struct termios	old;$/;"	member	line:106	struct:s_shell	typeref:struct:s_shell::termios
+now	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	struct termios	*now;$/;"	member	line:107	struct:s_shell	typeref:struct:s_shell::termios
+history	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	t_vector		*history;$/;"	member	line:108	struct:s_shell
+sorted_h	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	t_vector		*sorted_h;$/;"	member	line:109	struct:s_shell
+cmd	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	t_command		*cmd;$/;"	member	line:110	struct:s_shell
+lineinfo	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	t_lineman		*lineinfo;$/;"	member	line:111	struct:s_shell
+t_shell	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^}				t_shell;$/;"	typedef	line:112	typeref:struct:s_shell
+s_parse	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^typedef struct	s_parse$/;"	struct	line:114
+retstr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	char		**retstr;$/;"	member	line:116	struct:s_parse
+start	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int			start;$/;"	member	line:117	struct:s_parse
+end	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int			end;$/;"	member	line:118	struct:s_parse
+dq	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int			dq;$/;"	member	line:119	struct:s_parse
+count	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int			count;$/;"	member	line:120	struct:s_parse
+i	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^	int			i;$/;"	member	line:121	struct:s_parse
+t_parse	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/minishell.h	/^}				t_parse;$/;"	typedef	line:122	typeref:struct:s_parse
+VECTOR_H	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^# define VECTOR_H$/;"	macro	line:14
+s_vector	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^typedef struct	s_vector$/;"	struct	line:17
+data	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^	void		*data;$/;"	member	line:19	struct:s_vector
+capacity	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^	size_t		capacity;$/;"	member	line:20	struct:s_vector
+size	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^	size_t		size;$/;"	member	line:21	struct:s_vector
+itemsize	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^	size_t		itemsize;$/;"	member	line:22	struct:s_vector
+t_vector	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/headers/vector.h	/^}				t_vector;$/;"	typedef	line:23	typeref:struct:s_vector
+ft_strrchr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strrchr.c	/^char			*ft_strrchr(const char *string, int character)$/;"	function	line:15	signature:(const char *string, int character)
+ft_putstr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putstr.c	/^void	ft_putstr(char const *s)$/;"	function	line:15	signature:(char const *s)
+ft_strcmp	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strcmp.c	/^int	ft_strcmp(const char *s1, const char *s2)$/;"	function	line:15	signature:(const char *s1, const char *s2)
+ft_strlcat	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	function	line:15	signature:(char *dst, const char *src, size_t size)
+ft_memcpy	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *src, size_t n)$/;"	function	line:15	signature:(void *dst, const void *src, size_t n)
+ft_memmove	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_t len)$/;"	function	line:15	signature:(void *dst, const void *src, size_t len)
+word_builder	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strsplit.c	/^static char		*word_builder(char const *str, char c, unsigned int *index)$/;"	function	line:15	file:	signature:(char const *str, char c, unsigned int *index)
+ft_strsplit	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strsplit.c	/^char			**ft_strsplit(char const *s, char c)$/;"	function	line:42	signature:(char const *s, char c)
+ft_strncpy	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strncpy.c	/^char	*ft_strncpy(char const *dst, char *src, size_t max)$/;"	function	line:15	signature:(char const *dst, char *src, size_t max)
+ft_lstmap	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))$/;"	function	line:15	signature:(t_list *lst, t_list *(*f)(t_list *elem))
+ft_lstadd	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_lstadd.c	/^void	ft_lstadd(t_list **alst, t_list *new)$/;"	function	line:15	signature:(t_list **alst, t_list *new)
+ft_striter	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_striter.c	/^void	ft_striter(char *s, void (*f)(char*))$/;"	function	line:15	signature:(char *s, void (*f)(char*))
+ft_strstr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strstr.c	/^char	*ft_strstr(const char *big, const char *little)$/;"	function	line:15	signature:(const char *big, const char *little)
+ft_isdigit	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	function	line:15	signature:(int c)
+ft_putnbr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putnbr.c	/^void	ft_putnbr(int n)$/;"	function	line:15	signature:(int n)
+ft_memccpy	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memccpy.c	/^void	*ft_memccpy(void *dst, const void *src, int c, size_t n)$/;"	function	line:15	signature:(void *dst, const void *src, int c, size_t n)
+ft_strdel	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strdel.c	/^void	ft_strdel(char **as)$/;"	function	line:15	signature:(char **as)
+ft_memchr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	function	line:15	signature:(const void *s, int c, size_t n)
+ft_bzero	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	function	line:15	signature:(void *s, size_t n)
+LIBFT_H	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/libft.h	/^# define LIBFT_H$/;"	macro	line:14
+s_list	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/libft.h	/^typedef	struct		s_list$/;"	struct	line:20
+content	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/libft.h	/^	void			*content;$/;"	member	line:22	struct:s_list
+content_size	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/libft.h	/^	size_t			content_size;$/;"	member	line:23	struct:s_list
+next	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/libft.h	/^	struct s_list	*next;$/;"	member	line:24	struct:s_list	typeref:struct:s_list::s_list
+t_list	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/libft.h	/^}					t_list;$/;"	typedef	line:25	typeref:struct:s_list
+ft_isalnum	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	function	line:15	signature:(int c)
+ft_putstr_fd	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char const *s, int fd)$/;"	function	line:15	signature:(char const *s, int fd)
+CC	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^CC =	gcc$/;"	macro	line:1
+FLAG	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^FLAG =	-c -Wall -Wextra -Werror$/;"	macro	line:3
+NAME	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^NAME =	libft.a$/;"	macro	line:5
+LIB	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^LIB =	ar rc$/;"	macro	line:7
+RLIB	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^RLIB =	ranlib$/;"	macro	line:9
+SRCS	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^SRCS =	ft_putchar.c \\$/;"	macro	line:11
+OBJS	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/Makefile	/^OBJS =	$(SRCS:.c=.o)$/;"	macro	line:70
+ft_lstiter	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))$/;"	function	line:15	signature:(t_list *lst, void (*f)(t_list *elem))
+ft_lstdelone	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))$/;"	function	line:15	signature:(t_list **alst, void (*del)(void*, size_t))
+ft_toupper	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	function	line:15	signature:(int c)
+ft_strcpy	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strcpy.c	/^char	*ft_strcpy(char *dest, const char *src)$/;"	function	line:15	signature:(char *dest, const char *src)
+ft_lstnew	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_lstnew.c	/^t_list	*ft_lstnew(void const *content, size_t content_size)$/;"	function	line:15	signature:(void const *content, size_t content_size)
+ft_strdup	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strdup.c	/^char	*ft_strdup(const char *src)$/;"	function	line:15	signature:(const char *src)
+ft_putnbr_fd	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	function	line:15	signature:(int n, int fd)
+ft_striteri	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	function	line:15	signature:(char *s, void (*f)(unsigned int, char*))
+ft_strmap	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strmap.c	/^char	*ft_strmap(char const *s, char (*f)(char))$/;"	function	line:15	signature:(char const *s, char (*f)(char))
+ft_putendl_fd	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char const *s, int fd)$/;"	function	line:15	signature:(char const *s, int fd)
+ft_memdel	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memdel.c	/^void	ft_memdel(void **ap)$/;"	function	line:15	signature:(void **ap)
+ft_strnstr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t max)$/;"	function	line:15	signature:(const char *haystack, const char *needle, size_t max)
+ft_putchar	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putchar.c	/^int	ft_putchar(int c)$/;"	function	line:15	signature:(int c)
+ft_isascii	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	function	line:15	signature:(int c)
+ft_strlen	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	function	line:15	signature:(const char *s)
+ft_strsub	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strsub.c	/^char	*ft_strsub(char const *s, unsigned int start, size_t len)$/;"	function	line:15	signature:(char const *s, unsigned int start, size_t len)
+ft_strnew	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strnew.c	/^char	*ft_strnew(size_t size)$/;"	function	line:15	signature:(size_t size)
+ft_memalloc	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memalloc.c	/^void		*ft_memalloc(size_t size)$/;"	function	line:15	signature:(size_t size)
+ft_putendl	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putendl.c	/^void	ft_putendl(char const *s)$/;"	function	line:15	signature:(char const *s)
+ft_strncat	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strncat.c	/^char	*ft_strncat(char *s1, const char *s2, size_t max)$/;"	function	line:15	signature:(char *s1, const char *s2, size_t max)
+get_size	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_itoa.c	/^int		get_size(long n)$/;"	function	line:15	signature:(long n)
+ft_itoa	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	function	line:28	signature:(int n)
+ft_strncmp	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t l)$/;"	function	line:15	signature:(const char *s1, const char *s2, size_t l)
+ft_memcmp	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memcmp.c	/^int		ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	function	line:15	signature:(const void *s1, const void *s2, size_t n)
+findspace	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strtrim.c	/^int		findspace(char *s)$/;"	function	line:15	signature:(char *s)
+ft_strtrim	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s)$/;"	function	line:25	signature:(char const *s)
+ft_strequ	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strequ.c	/^int	ft_strequ(char const *s1, char const *s2)$/;"	function	line:15	signature:(char const *s1, char const *s2)
+ft_putchar_fd	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	function	line:15	signature:(char c, int fd)
+ft_memset	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/;"	function	line:15	signature:(void *b, int c, size_t len)
+ft_isalpha	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	function	line:15	signature:(int c)
+ft_strcat	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strcat.c	/^char	*ft_strcat(char *s1, const char *s2)$/;"	function	line:15	signature:(char *s1, const char *s2)
+ft_tolower	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	function	line:15	signature:(int c)
+ft_strnequ	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strnequ.c	/^int	ft_strnequ(char const *s1, char const *s2, size_t n)$/;"	function	line:15	signature:(char const *s1, char const *s2, size_t n)
+ft_strjoin	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	function	line:15	signature:(char const *s1, char const *s2)
+ft_atoi	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_atoi.c	/^int	ft_atoi(char *c)$/;"	function	line:15	signature:(char *c)
+ft_strclr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strclr.c	/^void	ft_strclr(char *s)$/;"	function	line:15	signature:(char *s)
+ft_strmapi	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	function	line:15	signature:(char const *s, char (*f)(unsigned int, char))
+ft_isprint	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	function	line:15	signature:(int c)
+ft_lstdel	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_lstdel.c	/^void	ft_lstdel(t_list **alst, void (*del)(void*, size_t))$/;"	function	line:15	signature:(t_list **alst, void (*del)(void*, size_t))
+ft_strchr	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/libft/ft_strchr.c	/^char	*ft_strchr(const char *string, int character)$/;"	function	line:15	signature:(const char *string, int character)
+vectspot	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector_a.c	/^void	*vectspot(size_t index, t_vector *vect)$/;"	function	line:16	signature:(size_t index, t_vector *vect)
+vect_insert	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector_a.c	/^void	vect_insert(t_vector *vect, size_t index, void *data)$/;"	function	line:23	signature:(t_vector *vect, size_t index, void *data)
+decreasevect	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector_a.c	/^void	decreasevect(t_vector *vect)$/;"	function	line:36	signature:(t_vector *vect)
+vect_delete	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector_a.c	/^void	vect_delete(t_vector *vect, size_t index)$/;"	function	line:43	signature:(t_vector *vect, size_t index)
+col_vect	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector_a.c	/^void	col_vect(t_vector *vect)$/;"	function	line:55	signature:(t_vector *vect)
+my_word_builder	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/mysplit.c	/^char			*my_word_builder(char const *str, unsigned int *index)$/;"	function	line:15	signature:(char const *str, unsigned int *index)
+my_ft_strsplit	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/mysplit.c	/^char			**my_ft_strsplit(char const *s)$/;"	function	line:42	signature:(char const *s)
+nonrun	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/minishell.c	/^void	nonrun(char **temp)$/;"	function	line:17	signature:(char **temp)
+dofree	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/minishell.c	/^void	dofree(char **temp)$/;"	function	line:24	signature:(char **temp)
+handlearg	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/minishell.c	/^void	handlearg(int argc, char **argv)$/;"	function	line:30	signature:(int argc, char **argv)
+logicrun	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/minishell.c	/^void	logicrun(int ret, char **temp, t_vector *vect)$/;"	function	line:38	signature:(int ret, char **temp, t_vector *vect)
+shellexit	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/minishell.c	/^int shellexit(t_shell *shell)$/;"	function	line:52	signature:(t_shell *shell)
+main	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/minishell.c	/^int		main(int argc, char **argv, char **envp)$/;"	function	line:60	signature:(int argc, char **argv, char **envp)
+trimsome	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input.c	/^int		trimsome(char *str, int i)$/;"	function	line:15	signature:(char *str, int i)
+countthis	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input.c	/^int		countthis(char *str)$/;"	function	line:22	signature:(char *str)
+setints	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input.c	/^void	setints(int *ret, int *i, int *dq)$/;"	function	line:38	signature:(int *ret, int *i, int *dq)
+inputsize	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input.c	/^int		inputsize(char *str)$/;"	function	line:45	signature:(char *str)
+subof	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/utils.c	/^char	*subof(char *str, int sub)$/;"	function	line:15	signature:(char *str, int sub)
+countarray	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/utils.c	/^int		countarray(char **lst)$/;"	function	line:31	signature:(char **lst)
+freedub	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/utils.c	/^void	freedub(char **str)$/;"	function	line:41	signature:(char **str)
+insert_str	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/insert.c	/^void	insert_str(char *cwd)$/;"	function	line:3	signature:(char *cwd)
+insert_char	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/insert.c	/^void	insert_char(char *c)$/;"	function	line:21	signature:(char *c)
+ft_realloc	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector.c	/^void			*ft_realloc(void *ptr, size_t size)$/;"	function	line:16	signature:(void *ptr, size_t size)
+vect_new	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector.c	/^t_vector		*vect_new(size_t count, size_t size)$/;"	function	line:36	signature:(size_t count, size_t size)
+vectcap	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector.c	/^int				vectcap(t_vector *vect)$/;"	function	line:56	signature:(t_vector *vect)
+vectsize	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector.c	/^int				vectsize(t_vector *vect)$/;"	function	line:61	signature:(t_vector *vect)
+increasevect	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/vector.c	/^void			increasevect(t_vector *vect)$/;"	function	line:66	signature:(t_vector *vect)
+storeenv	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/env.c	/^void	storeenv(t_vector *vect, char **envp)$/;"	function	line:16	signature:(t_vector *vect, char **envp)
+getenvvar	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/env.c	/^void	getenvvar(t_vector *vect, char *str)$/;"	function	line:30	signature:(t_vector *vect, char *str)
+dupenvvar	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/env.c	/^char	*dupenvvar(t_vector *vect, char *str)$/;"	function	line:47	signature:(t_vector *vect, char *str)
+findenvvarint	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/env.c	/^int		findenvvarint(t_vector *vect, char *str)$/;"	function	line:69	signature:(t_vector *vect, char *str)
+runprog	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/exec.c	/^void	runprog(char *test, char **temp, t_vector *vect)$/;"	function	line:15	signature:(char *test, char **temp, t_vector *vect)
+checkloc	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/exec.c	/^int		checkloc(char *test, int size, char **temp, t_vector *vect)$/;"	function	line:38	signature:(char *test, int size, char **temp, t_vector *vect)
+checklocsp	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/exec.c	/^int		checklocsp(char *test, char **temp, t_vector *vect)$/;"	function	line:51	signature:(char *test, char **temp, t_vector *vect)
+execprog	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/exec.c	/^int		execprog(char *str, char **bins, char **temp, t_vector *vect)$/;"	function	line:66	signature:(char *str, char **bins, char **temp, t_vector *vect)
+setup_term	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/term.c	/^int			setup_term(t_shell *shell)$/;"	function	line:3	signature:(t_shell *shell)
+initshellstruct	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/term.c	/^void initshellstruct(t_shell *shell)$/;"	function	line:66	signature:(t_shell *shell)
+getbins	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/runbin.c	/^char	**getbins(t_vector *vect)$/;"	function	line:16	signature:(t_vector *vect)
+checkbin	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/runbin.c	/^char	*checkbin(char *prog, char *path)$/;"	function	line:30	signature:(char *prog, char *path)
+check_char	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/check.c	/^int check_char(char *data)$/;"	function	line:3	signature:(char *data)
+setstruct	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input_a.c	/^void	setstruct(t_parse *thing)$/;"	function	line:15	signature:(t_parse *thing)
+parse_a	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input_a.c	/^void	parse_a(t_parse *m_parse, char *str)$/;"	function	line:24	signature:(t_parse *m_parse, char *str)
+parseinput	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input_a.c	/^char	**parseinput(char *str)$/;"	function	line:53	signature:(char *str)
+checkenv	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/input_a.c	/^void	checkenv(char **temp, t_vector *vect)$/;"	function	line:69	signature:(char **temp, t_vector *vect)
+checkarrowkeys	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/readtmp.c	/^char *checkarrowkeys(char *str1, t_shell *shell, char *ret)$/;"	function	line:15	signature:(char *str1, t_shell *shell, char *ret)
+read_tmp	/nfs/2016/r/rpassafa/Cadet/projects/21REAL/srcs/readtmp.c	/^char	*read_tmp(t_shell *shell)$/;"	function	line:70	signature:(t_shell *shell)

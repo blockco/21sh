@@ -97,8 +97,7 @@ typedef struct s_lineman
 {
 	int left;
 	int right;
-	int up;
-	int down;
+	int size;
 }				t_lineman;
 
 typedef struct	s_shell
@@ -121,7 +120,7 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
-char			*read_tmp();
+char			*read_tmp(t_shell *shell);
 void			storeenv(t_vector *vect, char **envp);
 char			*subof(char *str, int sub);
 char			**getbins(t_vector *vect);

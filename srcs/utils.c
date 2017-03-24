@@ -28,6 +28,23 @@ char	*subof(char *str, int sub)
 	return (ret);
 }
 
+char	*subof_free(char *str, int sub)
+{
+	int		i;
+	char	*ret;
+
+	i = 0;
+	ret = ft_strnew(ft_strlen(str) - sub);
+	while (str[sub])
+	{
+		ret[i] = str[sub];
+		i++;
+		sub++;
+	}
+	free(str);
+	return (ret);
+}
+
 int		countarray(char **lst)
 {
 	int i;

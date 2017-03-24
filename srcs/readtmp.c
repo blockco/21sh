@@ -12,37 +12,49 @@
 
 #include "../headers/minishell.h"
 
-void checkarrowkeys(char *str1, t_shell *shell)
+char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
-	if (str1[2] == 'C')
+	if (str1[2] == 'C') 		//right
 	{
-		ft_putendl("here1");
-		CLEAR_LN;
+		if (shell->lineinfo->left > 0)
+		{
+			shell->lineinfo->left--;
+			shell->lineinfo->right++;
+			RIGHT;
+		}
 	}
-	else if (str1[2] == 'A')
+	else if (str1[2] == 'A') 	//up
 	{
-		ft_putendl("here2");
+		LINE;
 		CLEAR_LN;
+		print_interp();
+		return(ft_strdup(""));
 	}
-	else if (str1[2] == 'B')
+	else if (str1[2] == 'B') 	//down
 	{
-		ft_putendl("here3");
+		LINE;
 		CLEAR_LN;
+		print_interp();
+		return(ft_strdup(""));
 	}
-	else if (str1[2] == 'D')
+	else if (str1[2] == 'D')	//left
 	{
-		ft_putendl("here4");
-		CLEAR_LN;
+		if (shell->lineinfo->size > shell->lineinfo->left)
+		{
+			LEFT;
+			shell->lineinfo->left++;
+		}
 	}
 	else if (str1[0] == 127)
 	{
-		// ft_putendl("backspace");
-		// ft_putstr(str1);
-		// CLEAR_LN;
-		LEFT;
-		DEL_CHAR;
+		if (shell->lineinfo->size > 0 && shell->lineinfo->left < shell->lineinfo->size)
+		{
+			shell->lineinfo->size--;
+			LEFT;
+			DEL_CHAR;
+		}
 	}
-	shell->lineinfo->left = 0;
+	return(ft_strjoin(ret, ""));
 }
 
 char	*read_tmp(t_shell *shell)
@@ -56,6 +68,9 @@ char	*read_tmp(t_shell *shell)
 	str1 = ft_strnew(BUFF_SIZE);
 	ret = ft_strnew(1);
 	bytes_read = 0;
+	shell->lineinfo->size = 0;
+	shell->lineinfo->left = 0;
+	shell->lineinfo->right = 0;
 	while (ft_strchr(ret, '\n') == NULL)
 	{
 		vect_insert(vect, vect->size, &str1);
@@ -68,19 +83,14 @@ char	*read_tmp(t_shell *shell)
 			if (bytes_read > 1)
 				ret = ft_strjoin(ret, (const char*)str1);
 			else
-			{
 				ret = ft_strdup(str1);
-			}
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
-			//whats printing to screen
+			shell->lineinfo->size++;
 		}
 		else
-		{
-			checkarrowkeys(str1, shell);
-			ret = ft_strjoin(ret, "");
-		}
+			ret = checkarrowkeys(str1, shell, ret);
 		if (str1[0] == 13)
 			break;
 	}
