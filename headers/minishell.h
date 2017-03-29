@@ -98,6 +98,7 @@ typedef struct s_lineman
 	int left;
 	int right;
 	int size;
+	int spot_hist;
 }				t_lineman;
 
 typedef struct	s_shell
@@ -163,6 +164,7 @@ void			insert_char(char *c);
 void			insert_str(char *c);
 int				setup_term(t_shell *shell);
 void			initshellstruct(t_shell *shell);
+void 			termresetline(t_shell *shell);
 
 //checking data
 int check_char(char *data);

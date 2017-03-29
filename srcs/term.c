@@ -45,7 +45,6 @@ int			setup_term(t_shell *shell)
 
 // int			setup_term(t_shell *shell)
 // {
-//
 // 		struct termios	tattr;
 //
 // 		tcgetattr(STDIN_FILENO, &shell->old);
@@ -62,6 +61,14 @@ int			setup_term(t_shell *shell)
 // 		shell->now = &tattr;
 // 		return (1);
 // }
+
+void termresetline(t_shell *shell)
+{
+	shell->lineinfo->size = 0;
+	shell->lineinfo->left = 0;
+	shell->lineinfo->right = 0;
+	shell->lineinfo->spot_hist = -1;
+}
 
 void initshellstruct(t_shell *shell)
 {

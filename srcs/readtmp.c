@@ -25,17 +25,34 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	}
 	else if (str1[2] == 'A') 	//up
 	{
-		LINE;
-		CLEAR_LN;
-		print_interp();
-		return(ft_strdup(""));
+		if (shell->lineinfo->spot_hist < (int)shell->history->size - 1)
+		{
+			LINE;
+			CLEAR_LN;
+			print_interp();
+			shell->lineinfo->spot_hist++;
+			ft_putstr(vectspot(shell->lineinfo->spot_hist, shell->history));
+			return (ft_strdup(vectspot(shell->lineinfo->spot_hist, shell->history)));
+		}
 	}
 	else if (str1[2] == 'B') 	//down
 	{
-		LINE;
-		CLEAR_LN;
-		print_interp();
-		return(ft_strdup(""));
+			if (shell->lineinfo->spot_hist > -1)
+			{
+				LINE;
+				CLEAR_LN;
+				print_interp();
+				ft_putstr(vectspot(shell->lineinfo->spot_hist, shell->history));
+				shell->lineinfo->spot_hist--;
+				if (shell->lineinfo->spot_hist > -1)
+					return ft_strdup((vectspot(shell->lineinfo->spot_hist + 1, shell->history)));
+			}
+			if (shell->lineinfo->spot_hist == -1)
+			{
+				LINE;
+				CLEAR_LN;
+				print_interp();
+			}
 	}
 	else if (str1[2] == 'D')	//left
 	{
@@ -68,9 +85,7 @@ char	*read_tmp(t_shell *shell)
 	str1 = ft_strnew(BUFF_SIZE);
 	ret = ft_strnew(1);
 	bytes_read = 0;
-	shell->lineinfo->size = 0;
-	shell->lineinfo->left = 0;
-	shell->lineinfo->right = 0;
+	termresetline(shell);
 	while (ft_strchr(ret, '\n') == NULL)
 	{
 		vect_insert(vect, vect->size, &str1);
@@ -94,7 +109,8 @@ char	*read_tmp(t_shell *shell)
 		if (str1[0] == 13)
 			break;
 	}
-	vect_insert(shell->history, shell->history->size, ft_strdup(ret));
+	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0)
+		vect_insert(shell->history, 0, ft_strdup(ret));
 	insert_char("\n");
 	col_vect(vect);
 	ret[bytes_read - 1] = '\0';
