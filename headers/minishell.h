@@ -95,8 +95,7 @@ typedef struct	s_command
 
 typedef struct s_lineman
 {
-	int left;
-	int right;
+	int linespot;
 	int size;
 	int spot_hist;
 }				t_lineman;
@@ -168,5 +167,10 @@ void 			termresetline(t_shell *shell);
 
 //checking data
 int check_char(char *data);
+
+//line management
+char *cop_begin(char *ret, int spot);
+char *copend(char *ret, int spot);
+char *addtobuff(t_shell *shell, char *ret, char *str1);
 
 #endif

@@ -65,8 +65,7 @@ int			setup_term(t_shell *shell)
 void termresetline(t_shell *shell)
 {
 	shell->lineinfo->size = 0;
-	shell->lineinfo->left = 0;
-	shell->lineinfo->right = 0;
+	shell->lineinfo->linespot = 0;
 	shell->lineinfo->spot_hist = -1;
 }
 

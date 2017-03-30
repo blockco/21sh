@@ -16,10 +16,9 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
 	if (str1[2] == 'C') 		//right
 	{
-		if (shell->lineinfo->left > 0)
+		if (shell->lineinfo->linespot > 0)
 		{
-			shell->lineinfo->left--;
-			shell->lineinfo->right++;
+			shell->lineinfo->linespot--;
 			RIGHT;
 		}
 	}
@@ -56,15 +55,15 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	}
 	else if (str1[2] == 'D')	//left
 	{
-		if (shell->lineinfo->size > shell->lineinfo->left)
+		if (shell->lineinfo->size > shell->lineinfo->linespot)
 		{
 			LEFT;
-			shell->lineinfo->left++;
+			shell->lineinfo->linespot++;
 		}
 	}
 	else if (str1[0] == 127)
 	{
-		if (shell->lineinfo->size > 0 && shell->lineinfo->left < shell->lineinfo->size)
+		if (shell->lineinfo->size > 0 && shell->lineinfo->linespot < shell->lineinfo->size)
 		{
 			shell->lineinfo->size--;
 			LEFT;
@@ -96,7 +95,9 @@ char	*read_tmp(t_shell *shell)
 		if (check_char(str1))
 		{
 			if (bytes_read > 1)
-				ret = ft_strjoin(ret, (const char*)str1);
+			{
+				ret = addtobuff(shell, ret, str1);
+			}
 			else
 				ret = ft_strdup(str1);
 			INSERT_MODE_ON;
