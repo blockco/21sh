@@ -35,6 +35,24 @@ char *copend(char *ret, int spot)
 	return buff;
 }
 
+char *del_fun(char *ret, int spot)
+{
+	char *begin;
+	char *end;
+	int save;
+
+	save = ft_strlen(ret) - spot;
+	ret[save - 1] = '\0';
+	begin = ft_strdup(ret);
+	ret = ret + save;
+	end = ft_strdup(ret);
+	ret = ret + save;
+	free(begin);
+	free(end);
+	return(ft_strjoin(begin,end));
+
+}
+
 char *addtobuff(t_shell *shell, char *ret, char *str1)
 {
 	char *begin;

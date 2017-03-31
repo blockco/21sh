@@ -24,34 +24,13 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	}
 	else if (str1[2] == 'A') 	//up
 	{
-		if (shell->lineinfo->spot_hist < (int)shell->history->size - 1)
-		{
-			LINE;
-			CLEAR_LN;
-			print_interp();
-			shell->lineinfo->spot_hist++;
-			ft_putstr(vectspot(shell->lineinfo->spot_hist, shell->history));
-			return (ft_strdup(vectspot(shell->lineinfo->spot_hist, shell->history)));
-		}
+		ft_putstr("up");
+		return (ft_strdup("up"));
 	}
 	else if (str1[2] == 'B') 	//down
 	{
-			if (shell->lineinfo->spot_hist > -1)
-			{
-				LINE;
-				CLEAR_LN;
-				print_interp();
-				ft_putstr(vectspot(shell->lineinfo->spot_hist, shell->history));
-				shell->lineinfo->spot_hist--;
-				if (shell->lineinfo->spot_hist > -1)
-					return ft_strdup((vectspot(shell->lineinfo->spot_hist + 1, shell->history)));
-			}
-			if (shell->lineinfo->spot_hist == -1)
-			{
-				LINE;
-				CLEAR_LN;
-				print_interp();
-			}
+		ft_putstr("down");
+		return (ft_strdup("down"));
 	}
 	else if (str1[2] == 'D')	//left
 	{
@@ -68,6 +47,7 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			shell->lineinfo->size--;
 			LEFT;
 			DEL_CHAR;
+			del_fun(ret, shell->lineinfo->linespot);
 		}
 	}
 	return(ft_strjoin(ret, ""));
@@ -82,7 +62,8 @@ char	*read_tmp(t_shell *shell)
 
 	vect = vect_new(10, sizeof(char*));
 	str1 = ft_strnew(BUFF_SIZE);
-	ret = ft_strnew(1);
+	// ret = ft_strnew(1);
+	ret = ft_strdup("");
 	bytes_read = 0;
 	termresetline(shell);
 	while (ft_strchr(ret, '\n') == NULL)
@@ -94,19 +75,19 @@ char	*read_tmp(t_shell *shell)
 		bytes_read += read(0, str1, BUFF_SIZE);
 		if (check_char(str1))
 		{
-			if (bytes_read > 1)
-			{
+			// if (bytes_read > 1)
+			// {
 				ret = addtobuff(shell, ret, str1);
-			}
-			else
-				ret = ft_strdup(str1);
+			// }
+			// else
+			// 	ret = ft_strdup(str1);
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
 			shell->lineinfo->size++;
 		}
 		else
-			ret = checkarrowkeys(str1, shell, ret);
+			ret = ft_strjoin(checkarrowkeys(str1, shell, ret), "");
 		if (str1[0] == 13)
 			break;
 	}

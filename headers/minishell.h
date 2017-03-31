@@ -172,5 +172,6 @@ int check_char(char *data);
 char *cop_begin(char *ret, int spot);
 char *copend(char *ret, int spot);
 char *addtobuff(t_shell *shell, char *ret, char *str1);
+char *del_fun(char *ret, int spot);
 
 #endif
