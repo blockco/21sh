@@ -14,6 +14,7 @@
 
 char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
+	char *save;
 	if (str1[2] == 'C') 		//right
 	{
 		if (shell->lineinfo->linespot > 0)
@@ -27,10 +28,12 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		ft_putstr("up");
 		return (ft_strdup("up"));
 	}
-	else if (str1[2] == 'B') 	//down
+	else if (str1[2] == 'B')	//down
 	{
 		ft_putstr("down");
-		return (ft_strdup("down"));
+		save = ft_strdup("adsfasgadgasdfas");
+		ft_putstr(save);
+		return (save);
 	}
 	else if (str1[2] == 'D')	//left
 	{
@@ -62,11 +65,10 @@ char	*read_tmp(t_shell *shell)
 
 	vect = vect_new(10, sizeof(char*));
 	str1 = ft_strnew(BUFF_SIZE);
-	// ret = ft_strnew(1);
 	ret = ft_strdup("");
 	bytes_read = 0;
 	termresetline(shell);
-	while (ft_strchr(ret, '\n') == NULL)
+	while (1)
 	{
 		vect_insert(vect, vect->size, &str1);
 		str1 = ft_strnew(BUFF_SIZE);
@@ -75,19 +77,16 @@ char	*read_tmp(t_shell *shell)
 		bytes_read += read(0, str1, BUFF_SIZE);
 		if (check_char(str1))
 		{
-			// if (bytes_read > 1)
-			// {
-				ret = addtobuff(shell, ret, str1);
-			// }
-			// else
-			// 	ret = ft_strdup(str1);
+			ret = addtobuff(shell, ret, str1);
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
 			shell->lineinfo->size++;
 		}
 		else
-			ret = ft_strjoin(checkarrowkeys(str1, shell, ret), "");
+		{
+			ret = checkarrowkeys(str1, shell, ret);
+		}
 		if (str1[0] == 13)
 			break;
 	}
@@ -95,6 +94,6 @@ char	*read_tmp(t_shell *shell)
 		vect_insert(shell->history, 0, ft_strdup(ret));
 	insert_char("\n");
 	col_vect(vect);
-	ret[bytes_read - 1] = '\0';
+	// ret[bytes_read - 1] = '\0';
 	return (ret);
 }
