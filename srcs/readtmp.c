@@ -14,12 +14,21 @@
 
 char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
+	shell->lineinfo->size = ft_strlen(ret);
 	if (str1[2] == 'C') 		//right
 	{
 		if (shell->lineinfo->linespot > 0)
 		{
 			shell->lineinfo->linespot--;
 			RIGHT;
+		}
+	}
+	else if (str1[2] == 'D')	//left
+	{
+		if (shell->lineinfo->size > shell->lineinfo->linespot)
+		{
+			LEFT;
+			shell->lineinfo->linespot++;
 		}
 	}
 	else if (str1[2] == 'A') 	//up
@@ -49,17 +58,9 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			}
 		}
 	}
-	else if (str1[2] == 'D')	//left
-	{
-		if (shell->lineinfo->size > shell->lineinfo->linespot)
-		{
-			LEFT;
-			shell->lineinfo->linespot++;
-		}
-	}
 	else if (str1[0] == 127)
 	{
-		if (shell->lineinfo->size > 0 && shell->lineinfo->linespot < shell->lineinfo->size)
+		if (shell->lineinfo->linespot < (int)ft_strlen(ret))
 		{
 			shell->lineinfo->size--;
 			LEFT;
@@ -73,22 +74,18 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 char	*read_tmp(t_shell *shell)
 {
 	char		*str1;
-	int			bytes_read;
 	char		*ret;
 	t_vector	*vect;
-
 	vect = vect_new(10, sizeof(char*));
 	str1 = ft_strnew(BUFF_SIZE);
 	ret = ft_strdup("");
-	bytes_read = 0;
 	termresetline(shell);
 	while (1)
 	{
 		vect_insert(vect, vect->size, &str1);
 		str1 = ft_strnew(BUFF_SIZE);
-		if (bytes_read > 0)
-			vect_insert(vect, vect->size, &ret);
-		bytes_read += read(0, str1, BUFF_SIZE);
+		vect_insert(vect, vect->size, &ret);
+		read(0, str1, BUFF_SIZE);
 		if (check_char(str1))
 		{
 			ret = addtobuff(shell, ret, str1);
@@ -106,5 +103,6 @@ char	*read_tmp(t_shell *shell)
 		vect_insert(shell->history, 0, ft_strdup(ret));
 	insert_char("\n");
 	col_vect(vect);
+	//history not freed
 	return (ret);
 }
