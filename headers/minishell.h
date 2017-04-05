@@ -98,12 +98,14 @@ typedef struct s_lineman
 	int linespot;
 	int size;
 	int spot_hist;
+	int dq;
 }				t_lineman;
 
 typedef struct	s_shell
 {
 	struct termios	old;
 	struct termios	*now;
+	int				endl;
 	t_vector		*history;
 	t_vector		*sorted_h;
 	t_command		*cmd;
@@ -166,7 +168,7 @@ void			initshellstruct(t_shell *shell);
 void 			termresetline(t_shell *shell);
 
 //checking data
-int check_char(char *data);
+int check_char(char *data, t_shell *shell);
 
 //line management
 char *cop_begin(char *ret, int spot);

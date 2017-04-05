@@ -67,6 +67,8 @@ void termresetline(t_shell *shell)
 	shell->lineinfo->size = 0;
 	shell->lineinfo->linespot = 0;
 	shell->lineinfo->spot_hist = -1;
+	shell->lineinfo->dq = 0;
+	shell->endl = 1;
 }
 
 void initshellstruct(t_shell *shell)

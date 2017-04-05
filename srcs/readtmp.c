@@ -87,7 +87,7 @@ char	*read_tmp(t_shell *shell)
 		str1 = ft_strnew(BUFF_SIZE);
 		vect_insert(vect, vect->size, &ret);
 		read(0, str1, BUFF_SIZE);
-		if (check_char(str1))
+		if (check_char(str1, shell))
 		{
 			ret = addtobuff(shell, ret, str1);
 			INSERT_MODE_ON;
@@ -97,15 +97,24 @@ char	*read_tmp(t_shell *shell)
 		}
 		else
 			ret = checkarrowkeys(str1, shell, ret);
-		if (str1[0] == 13)
+		if (str1[0] == 13 && !shell->lineinfo->dq)
 			break;
+		if (shell->lineinfo->dq && str1[0] == 13)
+		{
+			shell->endl++;
+			ft_putchar('\n');
+		}
 	}
 	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0)
 	{
 		tmp = ft_strdup(ret);
 		vect_insert(shell->history, 0, &tmp);
 	}
-	insert_char("\n");
+	while (shell->endl)
+	{
+		shell->endl--;
+		insert_char("\n");
+	}
 	col_vect(vect);
 	//history not freed
 	return (ret);
