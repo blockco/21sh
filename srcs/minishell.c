@@ -63,8 +63,12 @@ int		main(int argc, char **argv, char **envp)
 	t_vector	*vect;
 	t_shell		*shell;
 	char		**temp;
+	char 		*use;
+	char		**cmds;
 	int			ret;
+	int 		i;
 
+	i = 0;
 	shell = malloc(sizeof(t_shell));
 	setup_term(shell);
 	handlearg(argc, argv);
@@ -74,10 +78,19 @@ int		main(int argc, char **argv, char **envp)
 	{
 		print_interp();
 		str = read_tmp(shell);
-		temp = parseinput(str);
-		checkenv(temp, vect);
-		ret = runbuilt(temp, vect);
-		logicrun(ret, temp, vect);
+		cmds = ft_strsplit(str, ';');
+		i = 0;
+		while (cmds[i])
+		{
+			use = ft_strtrim(cmds[i]);
+			temp = parseinput(use);
+			checkenv(temp, vect);
+			ret = runbuilt(temp, vect);
+			logicrun(ret, temp, vect);
+			free(use);
+			i++;
+		}
+		freedub(cmds);
 		if (ret == -1)
 			break ;
 	}
