@@ -89,6 +89,8 @@ int		main(int argc, char **argv, char **envp)
 			logicrun(ret, temp, vect);
 			free(use);
 			i++;
+			if (ret == -1)
+				break ;
 		}
 		freedub(cmds);
 		if (ret == -1)
