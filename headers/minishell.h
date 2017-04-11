@@ -88,9 +88,13 @@
 # define C_RIGHT			"\[C"
 # define C_DOWN				"\[B"
 
+typedef struct
+
 typedef struct	s_command
 {
-	char **cmds;
+	char *command;
+	char **args;
+	int redirect;
 }				t_command;
 
 typedef struct s_lineman
