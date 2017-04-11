@@ -34,7 +34,6 @@ char	**cpenv_b(t_vector *vect)
 	while (i < (int)vect->size)
 	{
 		ret[i] = ft_strdup(*(char **)vectspot(i, vect));
-		ft_putendl(ret[i]);
 		i++;
 	}
 	ret[i] = 0;
