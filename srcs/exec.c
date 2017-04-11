@@ -22,7 +22,9 @@ void	runprog(char *test, char **temp, t_vector *vect)
 	env = cpenv_b(vect);
 	pid = fork();
 	if (pid == 0)
+	{
 		err = execve(test, temp, env);
+	}
 	else if (pid < 0)
 	{
 		ft_putstr("fork failed with error code ");

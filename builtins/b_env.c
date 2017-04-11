@@ -31,9 +31,10 @@ char	**cpenv_b(t_vector *vect)
 
 	ret = (char**)malloc(sizeof(char*) * vect->size + 2);
 	i = 0;
-	while (i <= (int)vect->size)
+	while (i < (int)vect->size)
 	{
 		ret[i] = ft_strdup(*(char **)vectspot(i, vect));
+		ft_putendl(ret[i]);
 		i++;
 	}
 	ret[i] = 0;
