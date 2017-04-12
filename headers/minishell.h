@@ -88,11 +88,8 @@
 # define C_RIGHT			"\[C"
 # define C_DOWN				"\[B"
 
-typedef struct
-
 typedef struct	s_command
 {
-	char *command;
 	char **args;
 	int redirect;
 }				t_command;
@@ -179,5 +176,10 @@ char *cop_begin(char *ret, int spot);
 char *copend(char *ret, int spot);
 char *addtobuff(t_shell *shell, char *ret, char *str1);
 char *del_fun(char *ret, int spot);
+
+//redirect parse
+void createcmds(t_vector *cmd_vect, char **temp);
+int findargs(char **temp);
+int isredir(char *str);
 
 #endif
