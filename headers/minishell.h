@@ -92,6 +92,7 @@ typedef struct	s_command
 {
 	char **args;
 	int redirect;
+	struct s_command *next;
 }				t_command;
 
 typedef struct s_lineman
@@ -178,7 +179,7 @@ char *addtobuff(t_shell *shell, char *ret, char *str1);
 char *del_fun(char *ret, int spot);
 
 //redirect parse
-void createcmds(t_vector *cmd_vect, char **temp);
+void createcmds(t_command *head, char **temp);
 int findargs(char **temp);
 int isredir(char *str);
 

@@ -61,7 +61,7 @@ int		main(int argc, char **argv, char **envp)
 {
 	char		*str;
 	t_vector	*vect;
-	t_vector	*cmd_vect;
+	t_command	*head;
 	t_shell		*shell;
 	char		**temp;
 	char 		*use;
@@ -74,8 +74,8 @@ int		main(int argc, char **argv, char **envp)
 	setup_term(shell);
 	handlearg(argc, argv);
 	vect = vect_new(32, sizeof(char*));
-	cmd_vect = vect_new(32, sizeof(t_command*));
 	storeenv(vect, envp);
+	head = malloc(sizeof(t_command));
 	while (1)
 	{
 		print_interp();
@@ -87,7 +87,7 @@ int		main(int argc, char **argv, char **envp)
 			use = ft_strtrim(cmds[i]);
 			temp = parseinput(use);
 			checkenv(temp, vect);
-			createcmds(cmd_vect, temp);
+			createcmds(head, temp);
 			ret = runbuilt(temp, vect);
 			logicrun(ret, temp, vect);
 			free(use);
