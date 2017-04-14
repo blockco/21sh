@@ -91,6 +91,7 @@
 typedef struct	s_command
 {
 	char **args;
+	char *file;
 	int redirect;
 	struct s_command *next;
 }				t_command;

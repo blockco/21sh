@@ -63,6 +63,8 @@ void printlinkedcmds(t_command *head)
 			ft_putendl(cur->args[i++]);
 		ft_putnbr(cur->redirect);
 		ft_putendl("");
+		if(cur->file)
+			ft_putendl(cur->file);
 		cur = cur->next;
 	}
 }
@@ -108,6 +110,13 @@ void createcmds(t_command *head, char **temp)
 		}
 		else
 			new->redirect = 0;
+		if (temp[i] && new->redirect > 1 && new->redirect < 6)
+		{
+			new->file = ft_strdup(temp[i]);
+			i++;
+		}
+		else
+			new->file = NULL;
 		temp += i;
 		if (temp[0])
 		{
