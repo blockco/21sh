@@ -65,4 +65,5 @@ void	freedub(char **str)
 		free(str[i]);
 		i++;
 	}
+	free(str);
 }

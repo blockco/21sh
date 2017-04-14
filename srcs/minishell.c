@@ -62,6 +62,7 @@ int		main(int argc, char **argv, char **envp)
 	char		*str;
 	t_vector	*vect;
 	t_command	*head;
+	t_command	*curr;
 	t_shell		*shell;
 	char		**temp;
 	char 		*use;
@@ -88,8 +89,13 @@ int		main(int argc, char **argv, char **envp)
 			temp = parseinput(use);
 			checkenv(temp, vect);
 			createcmds(head, temp);
-			ret = runbuilt(temp, vect);
-			logicrun(ret, temp, vect);
+			curr = head;
+			while (curr)
+			{
+				ret = runbuilt(curr->args, vect);
+				logicrun(ret, curr->args, vect);
+				curr = curr->next;
+			}
 			free(use);
 			i++;
 			if (ret == -1)

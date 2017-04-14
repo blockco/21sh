@@ -77,9 +77,6 @@ void free_cmd_list(t_command *head)
 	while (cur)
 	{
 		i = 0;
-		while (cur->args[i])
-			free(cur->args[i++]);
-		free(cur->args);
 		prev = cur;
 		cur = cur->next;
 		free (prev);
@@ -123,5 +120,5 @@ void createcmds(t_command *head, char **temp)
 	}
 	temp -=  i;
 	printlinkedcmds(head);
-	free_cmd_list(head);
+	// free_cmd_list(head);
 }
