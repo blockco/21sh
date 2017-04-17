@@ -33,28 +33,39 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	}
 	else if (str1[2] == 'A') 	//up
 	{
+		LINE;
+		CLEAR_LN;
+		print_interp();
 		if (shell->lineinfo->spot_hist < (int)shell->history->size - 1)
 		{
-			LINE;
-			CLEAR_LN;
-			print_interp();
 			shell->lineinfo->spot_hist++;
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
+		else
+		{			
+			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
+			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
+		}
+
 	}
 	else if (str1[2] == 'B')	//down
 	{
 		LINE;
 		CLEAR_LN;
 		print_interp();
-		if (shell->lineinfo->linespot > -1)
+		if (shell->lineinfo->spot_hist > -1)
 		{
 			shell->lineinfo->spot_hist--;
 			if (shell->lineinfo->spot_hist > -1)
 			{
 				ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 				return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
+			}
+			else if (shell->lineinfo->spot_hist == -1)
+			{
+				ft_putstr("");
+				return(ft_strdup(""));
 			}
 		}
 	}
