@@ -39,11 +39,13 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		if (shell->lineinfo->spot_hist < (int)shell->history->size - 1)
 		{
 			shell->lineinfo->spot_hist++;
+			shell->lineinfo->linespot = 0;
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
 		else
 		{
+			shell->lineinfo->linespot = 0;
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
@@ -59,11 +61,13 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			shell->lineinfo->spot_hist--;
 			if (shell->lineinfo->spot_hist > -1)
 			{
+				shell->lineinfo->linespot = 0;
 				ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 				return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 			}
 			else if (shell->lineinfo->spot_hist == -1)
 			{
+				shell->lineinfo->linespot = 0;
 				ft_putstr("");
 				return(ft_strdup(""));
 			}
@@ -73,10 +77,12 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	{
 		if (shell->lineinfo->linespot < (int)ft_strlen(ret))
 		{
-			shell->lineinfo->size--;
-			LEFT;
-			DEL_CHAR;
-			del_fun(ret, shell->lineinfo->linespot);
+			//fix del function
+			;
+			// shell->lineinfo->size--;
+			// LEFT;
+			// DEL_CHAR;
+			// del_fun(ret, shell->lineinfo->linespot);
 		}
 	}
 	return(ft_strjoin(ret, ""));
