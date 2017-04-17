@@ -91,8 +91,8 @@
 
 typedef struct	s_command
 {
-	char 				**args;
-	int 				pipe;
+	char				**args;
+	int					pipe;
 	struct s_file		*head_file;
 	struct s_command 	*next;
 }						t_command;

@@ -35,15 +35,23 @@ int getredir(char *str)
 void printlinkedcmds(t_command *head)
 {
 	t_command *cur;
+	t_file		*h_file;
 	cur = head;
 	while (cur)
 	{
+		h_file = cur->head_file;
 		int i = 0;
 		while (cur->args[i])
 			ft_putendl(cur->args[i++]);
+		while (h_file)
+		{
+			ft_putendl("in redirect files");
+			if (h_file->file)
+				ft_putendl(h_file->file);
+			h_file = h_file->next;
+		}
 		cur = cur->next;
 	}
-	ft_putendl("here");
 }
 
 void createcmds(t_command *head, char **temp)
@@ -69,19 +77,24 @@ void createcmds(t_command *head, char **temp)
 		new->head_file = NULL;
 		if (temp[i] && getredir(temp[i]) > 1 && getredir(temp[i]) < 6)
 		{
+			new->head_file = (t_file*)malloc(sizeof(t_file));
 			file_point = new->head_file;
 			while (temp[i])
 			{
-				file_point = malloc(sizeof(t_file));
 				file_point->redir = getredir(temp[i]);
+				//
 				file_point->file = NULL;
 				i++;
 				if (temp[i])
+				{
 					file_point->file = ft_strdup(temp[i]);
+					i++;
+				}
 				file_point->parent = new;
 				while (temp[i] && !isredir(temp[i]))
 				{
-					//extra args
+					ft_putendl("extra");
+					ft_putendl(temp[i]);
 					i++;
 				}
 				if (temp[i] && getredir(temp[i]) == 1)
@@ -120,6 +133,6 @@ void createcmds(t_command *head, char **temp)
 	}
 	new = NULL;
 	temp -=  a;
-	// printlinkedcmds(head);
+	printlinkedcmds(head);
 	// free_cmd_list(head);
 }
