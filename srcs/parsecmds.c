@@ -21,8 +21,6 @@ int getredir(char *str)
 {
 	if (!str)
 		return 0;
-	if (ft_strcmp(str, "|") == 0)
-		return 1;
 	if (ft_strcmp(str, ">") == 0)
 		return 2;
 	if (ft_strcmp(str, ">>") == 0)
@@ -34,24 +32,6 @@ int getredir(char *str)
 	return 0;
 }
 
-void checkthisvect(t_vector *cmd_vect)
-{
-	size_t i;
-	t_command *test;
-
-	i = 0;
-	while (i < cmd_vect->size)
-	{
-		test = vectspot(i, cmd_vect);
-		i++;
-		int a = 0;
-		while (test->args[a])
-			ft_putendl(test->args[a++]);
-		ft_putnbr(test->redirect);
-		ft_putendl("");
-	}
-}
-
 void printlinkedcmds(t_command *head)
 {
 	t_command *cur;
@@ -61,41 +41,24 @@ void printlinkedcmds(t_command *head)
 		int i = 0;
 		while (cur->args[i])
 			ft_putendl(cur->args[i++]);
-		ft_putnbr(cur->redirect);
-		ft_putendl("");
-		if(cur->file)
-			ft_putendl(cur->file);
 		cur = cur->next;
 	}
-}
-
-void free_cmd_list(t_command *head)
-{
-	t_command *cur;
-	t_command *prev;
-	int i;
-
-	cur = head;
-	while (cur)
-	{
-		i = 0;
-		prev = cur;
-		cur = cur->next;
-		free (prev);
-		prev = NULL;
-	}
+	ft_putendl("here");
 }
 
 void createcmds(t_command *head, char **temp)
 {
 	int i;
-	t_command *new;
-	t_command *next;
+	int a;
+	t_command 	*new;
+	t_file		*file_point;
 
+	a = 0;
 	new = head;
 	while (temp[0])
 	{
 		i = 0;
+
 		new->args = malloc(sizeof(char*) * findargs(temp) + 1);
 		while (temp[i] && !isredir(temp[i]))
 		{
@@ -103,31 +66,60 @@ void createcmds(t_command *head, char **temp)
 			i++;
 		}
 		new->args[i] = NULL;
-		if (temp[i] && isredir(temp[i]))
+		new->head_file = NULL;
+		if (temp[i] && getredir(temp[i]) > 1 && getredir(temp[i]) < 6)
 		{
-			new->redirect = getredir(temp[i]);
+			file_point = new->head_file;
+			while (temp[i])
+			{
+				file_point = malloc(sizeof(t_file));
+				file_point->redir = getredir(temp[i]);
+				file_point->file = NULL;
+				i++;
+				if (temp[i])
+					file_point->file = ft_strdup(temp[i]);
+				file_point->parent = new;
+				while (temp[i] && !isredir(temp[i]))
+				{
+					//extra args
+					i++;
+				}
+				if (temp[i] && getredir(temp[i]) == 1)
+				{
+					file_point->parent->pipe = 1;
+					i++;
+					file_point->next = NULL;
+					break;
+				}
+				else if (!temp[i])
+				{
+					file_point->parent->pipe = 0;
+					file_point->next = NULL;
+					break;
+				}
+				file_point->next = (t_file*)malloc(sizeof(t_file));
+				file_point = file_point->next;
+				file_point->next = NULL;
+			}
+		}
+		else if (getredir(temp[i]) == 1)
+		{
 			i++;
+			new->pipe = 1;
 		}
 		else
-			new->redirect = 0;
-		if (temp[i] && new->redirect > 1 && new->redirect < 6)
+			new->pipe = 0;
+		if (temp[i])
 		{
-			new->file = ft_strdup(temp[i]);
-			i++;
-		}
-		else
-			new->file = NULL;
-		temp += i;
-		if (temp[0])
-		{
-			next = malloc(sizeof(t_command));
-			new->next = next;
+			new->next = malloc(sizeof(t_command));
 			new = new->next;
 		}
-		else
-			new->next = NULL;
+		new->next = NULL;
+		a += i;
+		temp += i;
 	}
-	temp -=  i;
-	printlinkedcmds(head);
+	new = NULL;
+	temp -=  a;
+	// printlinkedcmds(head);
 	// free_cmd_list(head);
 }

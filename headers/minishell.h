@@ -88,13 +88,23 @@
 # define C_RIGHT			"\[C"
 # define C_DOWN				"\[B"
 
+
 typedef struct	s_command
 {
-	char **args;
-	char *file;
-	int redirect;
-	struct s_command *next;
-}				t_command;
+	char 				**args;
+	int 				pipe;
+	struct s_file		*head_file;
+	struct s_command 	*next;
+}						t_command;
+
+typedef struct	s_file
+{
+	t_command			*parent;
+	struct s_file		*next;
+	char 				*file;
+	int 				redir;
+}						t_file;
+
 
 typedef struct s_lineman
 {

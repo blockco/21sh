@@ -100,6 +100,7 @@ int		main(int argc, char **argv, char **envp)
 			i++;
 			if (ret == -1)
 				break ;
+			freedub(temp);
 		}
 		freedub(cmds);
 		if (ret == -1)
