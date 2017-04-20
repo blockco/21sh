@@ -66,6 +66,8 @@ int openfile(t_file *file)
 		return(open(file->file, O_WRONLY | O_TRUNC | O_CREAT, 0600));
 	if (file->redir == 3)
 		return(open(file->file, O_WRONLY | O_APPEND | O_CREAT, 0600));
+	if (file->redir == 4)
+		return(open(file->file, O_RDONLY));
 	ft_putendl("did not open!!!");
 	return -1;
 }
@@ -80,13 +82,17 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	while (h_file)
 	{
 		fd = openfile(h_file);
-		dup2(fd, 1);
+		if (h_file->redir == 2 || h_file->redir == 3)
+			dup2(fd, 1);
+		if (h_file->redir == 4)
+			dup2(fd, 0);
 		close(fd);
 		h_file = h_file->next;
 	}
 	ret = runbuilt(curr->args, vect);
 	logicrun(ret, curr->args, vect);
 	dup2(shell->std_out, 1);
+	dup2(shell->std_in, 0);
 	return (ret);
 }
 
