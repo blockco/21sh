@@ -69,6 +69,7 @@ void termresetline(t_shell *shell)
 	shell->lineinfo->spot_hist = -1;
 	shell->lineinfo->dq = 0;
 	shell->endl = 1;
+	// shell->std_out = dup(0);
 }
 
 void initshellstruct(t_shell *shell)

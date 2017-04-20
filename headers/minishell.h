@@ -119,6 +119,8 @@ typedef struct	s_shell
 	struct termios	old;
 	struct termios	*now;
 	int				endl;
+	int				std_save;
+	int				std_in;
 	t_vector		*history;
 	t_vector		*sorted_h;
 	t_command		*cmd;
