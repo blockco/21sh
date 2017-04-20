@@ -99,7 +99,6 @@ typedef struct	s_command
 
 typedef struct	s_file
 {
-	t_command			*parent;
 	struct s_file		*next;
 	char 				*file;
 	int 				redir;
