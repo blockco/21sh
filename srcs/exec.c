@@ -34,7 +34,7 @@ void	runprog(char *test, char **temp, t_vector *vect)
 	}
 	signal(SIGINT, NULL);
 	wait(&status);
-	free(test);
+	// free(test);
 }
 
 int		checkloc(char *test, int size, char **temp, t_vector *vect)

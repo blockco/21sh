@@ -101,6 +101,7 @@ typedef struct	s_file
 {
 	struct s_file		*next;
 	char 				*file;
+	char				**extra;
 	int 				redir;
 }						t_file;
 

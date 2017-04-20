@@ -34,6 +34,65 @@ int getredir(char *str)
 	return 0;
 }
 
+int count_args(t_command *head)
+{
+	t_command *cur;
+ 	t_file		*h_file;
+	int i;
+	int z;
+
+ 	cur = head;
+	h_file = cur->head_file;
+	i = 0;
+	while (cur->args[i])
+		i++;
+ 	while (h_file)
+ 	{
+		z = 0;
+		while(h_file->extra[z++])
+			i++;
+		h_file = h_file->next;
+ 	}
+	return i;
+}
+
+void c_args(t_command *head)
+{
+	t_command 	*cur;
+	t_file		*h_file;
+	char 		**temp;
+	int 		i;
+	int			a;
+
+	cur = head;
+	while (cur)
+	{
+		h_file = cur->head_file;
+		temp = (char**)malloc(sizeof(char*) * (count_args(cur) + 1));
+		i = 0;
+		while(cur->args[i])
+		{
+			temp[i] = ft_strdup(cur->args[i]);
+			i++;
+		}
+		while (h_file)
+		{
+			a = 0;
+			while(h_file->extra[a])
+			{
+				temp[i] = ft_strdup(h_file->extra[a]);
+				a++;
+				i++;
+			}
+			h_file = h_file->next;
+		}
+		freedub(cur->args);
+		temp[i] = NULL;
+		cur->args =	temp;
+		cur = cur->next;
+	}
+}
+
 void printlinkedcmds(t_command *head)
 {
 	t_command *cur;
@@ -78,7 +137,6 @@ void createcmds(t_command *head, char **temp)
 			i++;
 		}
 		new->args[i] = NULL;
-		//seperate function
 		if (getredir(temp[i]) == 1)
 		{
 			new->pipe = 1;
@@ -101,11 +159,13 @@ void createcmds(t_command *head, char **temp)
 					file_point->file = ft_strdup(temp[i]);
 					i++;
 				}
+				file_point->extra = malloc(sizeof(char*) * findargs(temp) + 1);
+				int b = 0;
 				while (temp[i] && !isredir(temp[i]))
 				{
-					ft_putendl("extra");
-					ft_putendl(temp[i]);
+					file_point->extra[b] = ft_strdup(temp[i]);
 					i++;
+					b++;
 				}
 				if (temp[i] && getredir(temp[i]) == 1)
 				{
@@ -132,6 +192,8 @@ void createcmds(t_command *head, char **temp)
 		temp += i;
 	}
 	temp -=  a;
+
+	c_args(head);
 	printlinkedcmds(head);
 	// free_cmd_list(head);
 }

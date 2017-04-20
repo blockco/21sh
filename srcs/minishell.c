@@ -38,15 +38,16 @@ void	handlearg(int argc, char **argv)
 void	logicrun(int ret, char **temp, t_vector *vect)
 {
 	if (ret == 1 || ret == -1)
-		freedub(temp);
+		return;
+		// freedub(temp);
 	else if (!checklocsp(temp[0], temp, vect))
 	{
 		if (findenvvarint(vect, "PATH") == -1 ||
 		(temp[0] && !execprog(temp[0], getbins(vect), temp, vect)))
 			nonrun(temp);
 	}
-	else
-		dofree(temp);
+	// else
+	// 	dofree(temp);
 }
 
 int shellexit(t_shell *shell)
@@ -96,13 +97,13 @@ int		main(int argc, char **argv, char **envp)
 				logicrun(ret, curr->args, vect);
 				curr = curr->next;
 			}
-			free(use);
+			// free(use);
 			i++;
 			if (ret == -1)
 				break ;
-			freedub(temp);
+			// freedub(temp);
 		}
-		freedub(cmds);
+		// freedub(cmds);
 		if (ret == -1)
 			break ;
 	}
