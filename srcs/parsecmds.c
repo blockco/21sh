@@ -194,6 +194,6 @@ void createcmds(t_command *head, char **temp)
 	temp -=  a;
 
 	c_args(head);
-	printlinkedcmds(head);
+	// printlinkedcmds(head);
 	// free_cmd_list(head);
 }

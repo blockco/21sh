@@ -63,26 +63,30 @@ int shellexit(t_shell *shell)
 int openfile(t_file *file)
 {
 	if (file->redir == 2)
-		return(open(file->file, O_WRONLY | O_TRUNC | O_CREAT));
+		return(open(file->file, O_WRONLY | O_TRUNC | O_CREAT, 0600));
 	if (file->redir == 3)
-		return(open(file->file, O_WRONLY | O_APPEND | O_CREAT));
+		return(open(file->file, O_WRONLY | O_APPEND | O_CREAT, 0600));
+	ft_putendl("did not open!!!");
 	return -1;
 }
 
-int loopredir(t_command *curr, t_vector *vect)
+int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 {
 	int ret;
-	// int fds;
+	int fd;
 	t_file *h_file;
 
 	h_file = curr->head_file;
 	while (h_file)
 	{
-		// if (h_file->redir == 2)
+		fd = openfile(h_file);
+		dup2(fd, 1);
+		close(fd);
 		h_file = h_file->next;
 	}
 	ret = runbuilt(curr->args, vect);
 	logicrun(ret, curr->args, vect);
+	dup2(shell->std_out, 1);
 	return (ret);
 }
 
@@ -124,7 +128,7 @@ int		main(int argc, char **argv, char **envp)
 			{
 				// ret = runbuilt(curr->args, vect);
 				// logicrun(ret, curr->args, vect);
-				ret = loopredir(curr,vect);
+				ret = loopredir(curr,vect, shell);
 				curr = curr->next;
 				if (ret == -1)
 					break;
