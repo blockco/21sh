@@ -72,14 +72,14 @@ int openfile(t_file *file)
 	return -1;
 }
 
-int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
+int loopredir(t_command *curr, t_vector *vect)
 {
 	int ret;
 	int fd;
 	t_file *h_file;
 
 	h_file = curr->head_file;
-	while (h_file)
+	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
 		fd = openfile(h_file);
 		if (h_file->redir == 2 || h_file->redir == 3)
@@ -91,8 +91,6 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	}
 	ret = runbuilt(curr->args, vect);
 	logicrun(ret, curr->args, vect);
-	dup2(shell->std_out, 1);
-	dup2(shell->std_in, 0);
 	return (ret);
 }
 
@@ -134,11 +132,13 @@ int		main(int argc, char **argv, char **envp)
 			{
 				// ret = runbuilt(curr->args, vect);
 				// logicrun(ret, curr->args, vect);
-				ret = loopredir(curr,vect, shell);
+				ret = loopredir(curr,vect);
 				curr = curr->next;
 				if (ret == -1)
 					break;
 			}
+			dup2(shell->std_out, 1);
+			dup2(shell->std_in, 0);
 			// free(use);
 			i++;
 			if (ret == -1)

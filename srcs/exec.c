@@ -92,3 +92,41 @@ int		execprog(char *str, char **bins, char **temp, t_vector *vect)
 	freedub(bins);
 	return (0);
 }
+
+//redirection
+int		check_cmd_helper(char *test, int size)
+{
+	struct stat sb;
+
+	if (lstat(test, &sb) == -1)
+	{
+		return (size);
+	}
+	return (-1);
+}
+
+int		checkcmd(char *str, char **bins)
+{
+	int		size;
+	char	*test;
+
+	size = countarray(bins);
+	size--;
+	size = check_cmd_helper(str, size);
+	if (size == -1)
+		return (1);
+	while (size > -1)
+	{
+		test = checkbin(str, bins[size]);
+		if (test != NULL)
+		{
+			freedub(bins);
+			free(test);
+			return (1);
+		}
+		else
+			size--;
+	}
+	freedub(bins);
+	return (0);
+}

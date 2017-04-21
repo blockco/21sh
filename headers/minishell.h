@@ -195,5 +195,7 @@ char *del_fun(char *ret, int spot);
 void createcmds(t_command *head, char **temp);
 int findargs(char **temp);
 int isredir(char *str);
+//redirect helper
+int		checkcmd(char *str, char **bins);
 
 #endif
