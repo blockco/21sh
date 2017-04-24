@@ -43,13 +43,18 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
-		else
+		else if (shell->lineinfo->spot_hist == (int)shell->history->size)
 		{
 			shell->lineinfo->linespot = 0;
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
-
+		else
+		{
+			shell->lineinfo->linespot = 0;
+			ft_putstr("");
+			return(ft_strdup(""));
+		}
 	}
 	else if (str1[2] == 'B')	//down
 	{
