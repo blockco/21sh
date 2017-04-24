@@ -1,6 +1,6 @@
 #include "../headers/minishell.h"
 
-char *join_free_front_bzback(char *front, char *back)
+char *join_free_front(char *front, char *back)
 {
 	char *ret;
 	int i;
@@ -23,6 +23,5 @@ char *join_free_front_bzback(char *front, char *back)
 		i++;
 	}
 	free(front);
-	ft_bzero(back, BUFF_SIZE)
 	return (ret);
 }

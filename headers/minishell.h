@@ -139,7 +139,7 @@ typedef struct	s_parse
 }				t_parse;
 
 //edit buffer
-char *join_free_front_bzback(char *front, char *back);
+char *join_free_front(char *front, char *back);
 
 
 

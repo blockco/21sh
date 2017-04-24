@@ -96,10 +96,11 @@ char	*read_tmp(t_shell *shell)
 	char		*tmp;
 
 	ret = ft_strnew(0);
+	str1 = ft_strnew(BUFF_SIZE);
 	termresetline(shell);
 	while (1)
 	{
-		str1 = ft_strnew(BUFF_SIZE);
+		// str1 = ft_strnew(BUFF_SIZE);
 		bzero(str1, BUFF_SIZE);
 		read(0, str1, BUFF_SIZE);
 		if (str1[0] == 13 && !shell->lineinfo->dq)
@@ -112,7 +113,7 @@ char	*read_tmp(t_shell *shell)
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
-			ret = join_free_front_bzback(ret, str1);
+			ret = join_free_front(ret, str1);
 			//  ret = addtobuff(shell, ret, str1);
 			shell->lineinfo->size++;
 		}
