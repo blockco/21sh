@@ -138,6 +138,11 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
+//edit buffer
+char *join_free_front_bzback(char *front, char *back);
+
+
+
 char			*read_tmp(t_shell *shell);
 void			storeenv(t_vector *vect, char **envp);
 char			*subof(char *str, int sub);

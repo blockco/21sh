@@ -43,17 +43,11 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
-		else if (shell->lineinfo->spot_hist == (int)shell->history->size)
+		else
 		{
 			shell->lineinfo->linespot = 0;
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
-		}
-		else
-		{
-			shell->lineinfo->linespot = 0;
-			ft_putstr("");
-			return(ft_strdup(""));
 		}
 	}
 	else if (str1[2] == 'B')	//down
@@ -93,51 +87,52 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	return(ft_strjoin(ret, ""));
 }
 
+
+
 char	*read_tmp(t_shell *shell)
 {
 	char		*str1;
 	char		*ret;
 	char		*tmp;
-	t_vector	*vect;
-	vect = vect_new(10, sizeof(char*));
-	str1 = ft_strnew(BUFF_SIZE);
-	ret = ft_strdup("");
+
+	ret = ft_strnew(0);
 	termresetline(shell);
 	while (1)
 	{
-		vect_insert(vect, vect->size, &str1);
 		str1 = ft_strnew(BUFF_SIZE);
-		vect_insert(vect, vect->size, &ret);
+		bzero(str1, BUFF_SIZE);
 		read(0, str1, BUFF_SIZE);
-		if (check_char(str1, shell))
+		if (str1[0] == 13 && !shell->lineinfo->dq)
 		{
-			ret = addtobuff(shell, ret, str1);
+			free(str1);
+			break;
+		}
+		if (check_char(str1, shell) || (shell->lineinfo->dq && str1[0] == 13))
+		{
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
+			ret = join_free_front_bzback(ret, str1);
+			//  ret = addtobuff(shell, ret, str1);
 			shell->lineinfo->size++;
 		}
 		else
 			ret = checkarrowkeys(str1, shell, ret);
-		if (str1[0] == 13 && !shell->lineinfo->dq)
-			break;
-		if (shell->lineinfo->dq && str1[0] == 13)
-		{
-			shell->endl++;
-			ft_putchar('\n');
-		}
+		// else
+		// 	free(str1);
 	}
+	ft_putchar('\n');
 	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0)
 	{
 		tmp = ft_strdup(ret);
 		vect_insert(shell->history, 0, &tmp);
 	}
-	while (shell->endl)
-	{
-		shell->endl--;
-		insert_char("\n");
-	}
-	col_vect(vect);
+	// while (shell->endl)
+	// {
+	// 	shell->endl--;
+	// 	insert_char("\n");
+	// }
+	// col_vect(vect);
 	//history not freed
 	return (ret);
 }
