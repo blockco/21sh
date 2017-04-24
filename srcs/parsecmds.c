@@ -104,7 +104,7 @@ void printlinkedcmds(t_command *head)
 		int i = 0;
 		while (cur->args[i])
 			ft_putendl(cur->args[i++]);
-		ft_putnbr(cur->pipe);
+		ft_putnbr(cur->pipeout);
 		ft_putchar('\n');
 		while (h_file)
 		{
@@ -139,17 +139,17 @@ void createcmds(t_command *head, char **temp)
 		new->args[i] = NULL;
 		if (getredir(temp[i]) == 1)
 		{
-			new->pipe = 1;
+			new->pipeout = 1;
 			i++;
 		}
 		else
-			new->pipe = 0;
+			new->pipeout = 0;
 		new->head_file = NULL;
-		if (temp[i] && !new->pipe)
+		if (temp[i] && !new->pipeout)
 		{
 			new->head_file = (t_file*)malloc(sizeof(t_file));
 			file_point = new->head_file;
-			while (temp[i] && !new->pipe)
+			while (temp[i] && !new->pipeout)
 			{
 				file_point->redir = getredir(temp[i]);
 				file_point->file = NULL;
@@ -169,11 +169,11 @@ void createcmds(t_command *head, char **temp)
 				}
 				if (temp[i] && getredir(temp[i]) == 1)
 				{
-					new->pipe = 1;
+					new->pipeout = 1;
 					i++;
 				}
 				else if (!temp[i])
-					new->pipe = 0;
+					new->pipeout = 0;
 				else
 				{
 					file_point->next = (t_file*)malloc(sizeof(t_file));
@@ -185,6 +185,8 @@ void createcmds(t_command *head, char **temp)
 		if (temp[i])
 		{
 			new->next = malloc(sizeof(t_command));
+			if (new->pipeout)
+				new->next->pipein = 1;
 			new = new->next;
 		}
 		new->next = NULL;
