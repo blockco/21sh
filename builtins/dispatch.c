@@ -49,7 +49,7 @@ int	runbuilt(t_command *curr, t_vector *vect)
 	{
 		if (curr->args[1] == NULL)
 			changedirs(NULL, vect);
-		else if (curr->args[1] && curr->args[1] == NULL)
+		else if (curr->args[1] && curr->args[2] == NULL)
 			changedirs(curr->args[1], vect);
 		else
 			ft_putendl("to many arguments in cd");

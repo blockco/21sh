@@ -154,7 +154,12 @@ char			*read_tmp(t_shell *shell);
 void			storeenv(t_vector *vect, char **envp);
 char			*subof(char *str, int sub);
 char			**getbins(t_vector *vect);
-int				execprog(char *str, char **bins, char **temp, t_vector *vect);
+
+
+int				execprog(t_command *curr, char **bins, t_vector *vect);
+
+
+
 int				countarray(char **lst);
 char			*checkbin(char *prog, char *path);
 void			getenvvar(t_vector *vect, char *str);
@@ -164,7 +169,10 @@ char			*my_word_builder(char const *str, unsigned int *index);
 char			**my_ft_strsplit(char const *s);
 void			freedub(char **str);
 char			**parseinput(char *str);
-void			runprog(char *test, char **temp, t_vector *vect);
+
+void			runprog(t_command *curr, t_vector *vect);
+
+
 void			getenvvar(t_vector *vect, char *str);
 void			getenv_b(t_vector *vect);
 char			*dupenvvar(t_vector *vect, char *str);
@@ -186,7 +194,8 @@ char			*til_b(char *path, t_vector *vect);
 void			ft_til(t_vector *vect, char *path, char *cwd);
 void			checkenv(char **temp, t_vector *vect);
 char			**parseinput(char *str);
-int				checklocsp(char *test, char **temp, t_vector *vect);
+
+int				checklocsp(t_command *curr, t_vector *vect);
 
 
 void			insert_char(char *c);

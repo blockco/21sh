@@ -71,16 +71,16 @@ void	handlearg(int argc, char **argv)
 		;
 }
 
-void	logicrun(int ret, char **temp, t_vector *vect)
+void	logicrun(int ret, t_command *curr, t_vector *vect)
 {
 	if (ret == 1 || ret == -1)
 		return;
 		// freedub(temp);
-	else if (!checklocsp(temp[0], temp, vect))
+	else if (!checklocsp(curr, vect))
 	{
 		if (findenvvarint(vect, "PATH") == -1 ||
-		(temp[0] && !execprog(temp[0], getbins(vect), temp, vect)))
-			nonrun(temp);
+		(curr->args[0] && !execprog(curr, getbins(vect), vect)))
+			nonrun(curr->args);
 	}
 	// else
 	// 	dofree(temp);
@@ -127,7 +127,7 @@ int loopredir(t_command *curr, t_vector *vect)
 		h_file = h_file->next;
 	}
 	ret = runbuilt(curr, vect);
-	logicrun(ret, curr->args, vect);
+	logicrun(ret, curr, vect);
 	return (ret);
 }
 
