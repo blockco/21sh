@@ -14,6 +14,42 @@
 #include "../libft/libft.h"
 #include "../headers/vector.h"
 
+
+//debug scriptt
+void printlinkedcmds(t_command *head)
+{
+	t_command *cur;
+	t_file		*h_file;
+	cur = head;
+
+	while (cur)
+	{
+		ft_putendl("IS A CMD");
+		ft_putendl("");
+		h_file = cur->head_file;
+		int i = 0;
+		ft_putnbr(cur->pipein);
+		ft_putendl(" = pipeIN");
+		ft_putnbr(cur->pipeout);
+		ft_putendl(" = pipeOUT");
+		while (cur->args[i])
+			ft_putendl(cur->args[i++]);
+		ft_putnbr(cur->pipeout);
+		ft_putchar('\n');
+		while (h_file)
+		{
+			ft_putendl("in redirect files");
+			if (h_file->file)
+				ft_putendl(h_file->file);
+			h_file = h_file->next;
+		}
+		ft_putendl("IS A CMD");
+		ft_putendl("");
+		cur = cur->next;
+	}
+}
+//debug scriptt
+
 void	nonrun(char **temp)
 {
 	ft_putstr("unknown command rsh: ");
@@ -72,42 +108,6 @@ int openfile(t_file *file)
 	return -1;
 }
 
-//debug scriptt
-void printlinkedcmds(t_command *head)
-{
-	t_command *cur;
-	t_file		*h_file;
-	cur = head;
-
-	while (cur)
-	{
-		ft_putendl("IS A CMD");
-		ft_putendl("");
-		h_file = cur->head_file;
-		int i = 0;
-		ft_putnbr(cur->pipein);
-		ft_putendl(" = pipeIN");
-		ft_putnbr(cur->pipeout);
-		ft_putendl(" = pipeOUT");
-		while (cur->args[i])
-			ft_putendl(cur->args[i++]);
-		ft_putnbr(cur->pipeout);
-		ft_putchar('\n');
-		while (h_file)
-		{
-			ft_putendl("in redirect files");
-			if (h_file->file)
-				ft_putendl(h_file->file);
-			h_file = h_file->next;
-		}
-		ft_putendl("IS A CMD");
-		ft_putendl("");
-		cur = cur->next;
-	}
-}
-//debug scriptt
-
-
 int loopredir(t_command *curr, t_vector *vect)
 {
 	int ret;
@@ -126,7 +126,7 @@ int loopredir(t_command *curr, t_vector *vect)
 		close(fd);
 		h_file = h_file->next;
 	}
-	ret = runbuilt(curr->args, vect);
+	ret = runbuilt(curr, vect);
 	logicrun(ret, curr->args, vect);
 	return (ret);
 }
