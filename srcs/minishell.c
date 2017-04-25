@@ -114,7 +114,6 @@ int		main(int argc, char **argv, char **envp)
 	handlearg(argc, argv);
 	vect = vect_new(32, sizeof(char*));
 	storeenv(vect, envp);
-	head = malloc(sizeof(t_command));
 	while (1)
 	{
 		print_interp();
@@ -123,6 +122,7 @@ int		main(int argc, char **argv, char **envp)
 		i = 0;
 		while (cmds[i])
 		{
+			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
 			temp = parseinput(use);
 			checkenv(temp, vect);
@@ -139,6 +139,8 @@ int		main(int argc, char **argv, char **envp)
 			}
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
+			head = NULL;
+			free_cmd_list(head);
 			// free(use);
 			i++;
 			if (ret == -1)
