@@ -138,6 +138,9 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
+//small fix helpers
+char	*ft_freetrim(char *s);
+
 //free CMD_LIST
 void free_file_list(t_file *head);
 void free_cmd_list(t_command *head);

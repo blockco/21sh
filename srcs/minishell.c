@@ -72,12 +72,71 @@ int openfile(t_file *file)
 	return -1;
 }
 
+//debug scriptt
+void printlinkedcmds(t_command *head)
+{
+	t_command *cur;
+	t_file		*h_file;
+	cur = head;
+
+	while (cur)
+	{
+		ft_putendl("IS A CMD");
+		ft_putendl("");
+		h_file = cur->head_file;
+		int i = 0;
+		ft_putnbr(cur->pipein);
+		ft_putendl(" = pipeIN");
+		ft_putnbr(cur->pipeout);
+		ft_putendl(" = pipeOUT");
+		while (cur->args[i])
+			ft_putendl(cur->args[i++]);
+		ft_putnbr(cur->pipeout);
+		ft_putchar('\n');
+		while (h_file)
+		{
+			ft_putendl("in redirect files");
+			if (h_file->file)
+				ft_putendl(h_file->file);
+			h_file = h_file->next;
+		}
+		ft_putendl("IS A CMD");
+		ft_putendl("");
+		cur = cur->next;
+	}
+}
+//debug scriptt
+
+
 int loopredir(t_command *curr, t_vector *vect)
 {
 	int ret;
 	int fd;
 	t_file *h_file;
+	int pipes[2];
 
+	printlinkedcmds(curr);
+	if (curr->pipeout == 1 || curr->pipein == 1)
+	{
+		pipe(pipes);
+		if (curr->pipein == 1)
+		{
+			dup2(pipes[1], 0);
+			close(pipes[0]);
+		}
+		if (curr->pipeout == 1)
+		{
+			dup2(pipes[0], 1);
+			close(pipes[1]);
+		}
+		// close(pipes[1]);
+	}
+	if (curr->pipein == 1)
+	{
+		pipe(pipes);
+		dup2(pipes[1], 0);
+		// close(pipes[0]);
+	}
 	h_file = curr->head_file;
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
@@ -118,6 +177,7 @@ int		main(int argc, char **argv, char **envp)
 	{
 		print_interp();
 		str = read_tmp(shell);
+		str = ft_freetrim(str);
 		cmds = ft_strsplit(str, ';');
 		i = 0;
 		while (cmds[i])
