@@ -113,30 +113,8 @@ int loopredir(t_command *curr, t_vector *vect)
 	int ret;
 	int fd;
 	t_file *h_file;
-	int pipes[2];
 
-	printlinkedcmds(curr);
-	if (curr->pipeout == 1 || curr->pipein == 1)
-	{
-		pipe(pipes);
-		if (curr->pipein == 1)
-		{
-			dup2(pipes[1], 0);
-			close(pipes[0]);
-		}
-		if (curr->pipeout == 1)
-		{
-			dup2(pipes[0], 1);
-			close(pipes[1]);
-		}
-		// close(pipes[1]);
-	}
-	if (curr->pipein == 1)
-	{
-		pipe(pipes);
-		dup2(pipes[1], 0);
-		// close(pipes[0]);
-	}
+	// printlinkedcmds(curr);
 	h_file = curr->head_file;
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
