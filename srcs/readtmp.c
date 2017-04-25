@@ -87,7 +87,17 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	return(ft_strjoin(ret, ""));
 }
 
+int isjustwhite(char *str)
+{
+	int i;
 
+	i = 0;
+	while(str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (str[i])
+		return 0;
+	return (1);
+}
 
 char	*read_tmp(t_shell *shell)
 {
@@ -100,7 +110,6 @@ char	*read_tmp(t_shell *shell)
 	termresetline(shell);
 	while (1)
 	{
-		// str1 = ft_strnew(BUFF_SIZE);
 		bzero(str1, BUFF_SIZE);
 		read(0, str1, BUFF_SIZE);
 		if (str1[0] == 13 && !shell->lineinfo->dq)
@@ -114,26 +123,16 @@ char	*read_tmp(t_shell *shell)
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
 			ret = join_free_front(ret, str1);
-			//  ret = addtobuff(shell, ret, str1);
 			shell->lineinfo->size++;
 		}
 		else
 			ret = checkarrowkeys(str1, shell, ret);
-		// else
-		// 	free(str1);
 	}
 	ft_putchar('\n');
-	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0)
+	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0 && !isjustwhite(ret))
 	{
 		tmp = ft_strdup(ret);
 		vect_insert(shell->history, 0, &tmp);
 	}
-	// while (shell->endl)
-	// {
-	// 	shell->endl--;
-	// 	insert_char("\n");
-	// }
-	// col_vect(vect);
-	//history not freed
 	return (ret);
 }
