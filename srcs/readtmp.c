@@ -36,6 +36,7 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		LINE;
 		CLEAR_LN;
 		print_interp();
+		free(ret);
 		if (shell->lineinfo->spot_hist < (int)shell->history->size - 1)
 		{
 			shell->lineinfo->spot_hist++;
@@ -55,6 +56,7 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		LINE;
 		CLEAR_LN;
 		print_interp();
+		free(ret);
 		if (shell->lineinfo->spot_hist > -1)
 		{
 			shell->lineinfo->spot_hist--;
@@ -77,11 +79,10 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		if (shell->lineinfo->linespot < (int)ft_strlen(ret))
 		{
 			//fix del function
-			;
-			// shell->lineinfo->size--;
-			// LEFT;
-			// DEL_CHAR;
-			// del_fun(ret, shell->lineinfo->linespot);
+			shell->lineinfo->size--;
+			LEFT;
+			DEL_CHAR;
+			ret = del_fun(ret, shell->lineinfo->linespot);
 		}
 	}
 	return(ft_strjoin(ret, ""));
@@ -122,7 +123,7 @@ char	*read_tmp(t_shell *shell)
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
-			ret = join_free_front(ret, str1);
+			ret = addtobuff(shell, ret, str1);
 			shell->lineinfo->size++;
 		}
 		else

@@ -39,18 +39,13 @@ char *del_fun(char *ret, int spot)
 {
 	char *begin;
 	char *end;
-	int save;
+	char *fin;
 
-	save = ft_strlen(ret) - spot;
-	ret[save - 1] = '\0';
-	begin = ft_strdup(ret);
-	ret = ret + save;
-	end = ft_strdup(ret);
-	ret = ret + save;
-	free(begin);
-	free(end);
-	return(ft_strjoin(begin,end));
-
+	begin = cop_begin(ret, spot + 1);
+	end = copend(ret, spot);
+	free (ret);
+	fin = ft_strjoin(begin,end);
+	return(fin);
 }
 
 char *addtobuff(t_shell *shell, char *ret, char *str1)
@@ -69,8 +64,13 @@ char *addtobuff(t_shell *shell, char *ret, char *str1)
 		free (begin);
 		free (join);
 		free (end);
+		free (ret);
 		return (final);
 	}
 	else
-		return(ft_strjoin(ret, (const char*)str1));
+	{
+		final = ft_strjoin(ret, (const char*)str1);
+		free (ret);
+		return(final);
+	}
 }
