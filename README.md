@@ -1,6 +1,6 @@
-# minishell
+#21sh
 
-Minishell is a project at 42 US
+21sh is a project at 42 US
 
 Objectives:
   Reimplement a Unix shell from scratch
@@ -18,4 +18,19 @@ Supports
    cd
    cd ~
    echo $ANYVAR
-# 21sh
+
+Redirections include
+>> WORKING
+> WORKING
+< TODO: Check if file exists
+<< TODO: Actually fix the hear doc
+| TODO: have echo env sent correctly
+
+Features:
+line editing
+history traversal
+editable history
+shift arrow key skip to next word
+
+
+Supports: ; "
