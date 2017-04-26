@@ -18,11 +18,22 @@ void	runprog(t_command *curr, t_vector *vect)
 	int		pid;
 	int		err;
 	char	**env;
+	int		fd[2];
+	static int nice = 0;
 
 	env = cpenv_b(vect);
+
+	if (curr->next)
+		pipe(fd);
 	pid = fork();
 	if (pid == 0)
 	{
+		if (curr->next)
+		{
+			dup2(fd[1],1);
+			close(fd[0]);
+		}
+		dup2(nice, 0);
 		err = execve(curr->args[0], curr->args, env);
 	}
 	else if (pid < 0)
@@ -34,6 +45,8 @@ void	runprog(t_command *curr, t_vector *vect)
 	}
 	signal(SIGINT, NULL);
 	wait(&status);
+	close(fd[1]);
+	nice = fd[0];
 	// free(test);
 }
 
