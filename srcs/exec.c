@@ -28,6 +28,7 @@ void	runprog(t_command *curr, t_vector *vect)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		if (curr->next)
 		{
 			dup2(fd[1],1);
@@ -43,7 +44,7 @@ void	runprog(t_command *curr, t_vector *vect)
 		ft_putchar('\n');
 		exit(-1);
 	}
-	signal(SIGINT, NULL);
+	// signal(SIGINT, NULL);
 	wait(&status);
 	close(fd[1]);
 	nice = fd[0];

@@ -146,6 +146,7 @@ int		main(int argc, char **argv, char **envp)
 	int 		i;
 
 	i = 0;
+	signal(SIGINT, SIG_IGN);
 	shell = malloc(sizeof(t_shell));
 	setup_term(shell);
 	handlearg(argc, argv);
