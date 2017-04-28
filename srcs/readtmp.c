@@ -16,15 +16,56 @@ void jumpleft(t_shell *shell, char *ret)
 {
 	int index;
 
-	if (shell->lineinfo->linespot > -1)
-		index = ft_strlen(ret) - shell->lineinfo->linespot;
-	else
-		index = ft_strlen(ret);
-	while (index > 0 && ret[index] && ret[index] != ' ')
+	index = ft_strlen(ret) - shell->lineinfo->linespot;
+	if (shell->lineinfo->linespot == 0)
 	{
 		LEFT;
 		shell->lineinfo->linespot++;
 		index--;
+	}
+	if (ret[index] == ' ')
+	{
+		while (index > 0 && ret[index] && ret[index] == ' ')
+		{
+			LEFT;
+			shell->lineinfo->linespot++;
+			index--;
+		}
+	}
+	else
+	{
+		while (index > 0 && ret[index] && ret[index] != ' ')
+		{
+			LEFT;
+			shell->lineinfo->linespot++;
+			index--;
+		}
+	}
+}
+
+void jumpright(t_shell *shell, char *ret)
+{
+	int index;
+
+	index = ft_strlen(ret) - shell->lineinfo->linespot;
+
+	if (ret[index] == ' ')
+	{
+		while(ret[index] && ret[index] == ' ')
+		{
+			shell->lineinfo->linespot--;
+			RIGHT;
+			index++;
+		}
+	}
+	else
+	{
+		while (ret[index] && ret[index] != ' ')
+		{
+			shell->lineinfo->linespot--;
+			RIGHT;
+			index++;
+		}
 	}
 }
 
@@ -109,12 +150,11 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		if (tmp[1] == 'D')
 			jumpleft(shell, ret);
 		if (tmp[1] == 'C')
-			ft_putstr("SHIFT RIGHT");
+			jumpright(shell, ret);
 		if (tmp[1] == 'A')
 			ft_putstr("SHIFT UP");
 		if (tmp[1] == 'B')
 			ft_putstr("SHIFT DOWN");
-
 	}
 
 	return(ft_strjoin(ret, ""));
