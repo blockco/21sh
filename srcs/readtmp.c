@@ -12,8 +12,25 @@
 
 #include "../headers/minishell.h"
 
+void jumpleft(t_shell *shell, char *ret)
+{
+	int index;
+
+	if (shell->lineinfo->linespot > -1)
+		index = ft_strlen(ret) - shell->lineinfo->linespot;
+	else
+		index = ft_strlen(ret);
+	while (index > 0 && ret[index] && ret[index] != ' ')
+	{
+		LEFT;
+		shell->lineinfo->linespot++;
+		index--;
+	}
+}
+
 char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
+	char tmp[3];
 	shell->lineinfo->size = ft_strlen(ret);
 	if (str1[2] == 'C') 		//right
 	{
@@ -36,6 +53,7 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		LINE;
 		CLEAR_LN;
 		print_interp();
+		free(ret);
 		if (shell->lineinfo->spot_hist < (int)shell->history->size - 1)
 		{
 			shell->lineinfo->spot_hist++;
@@ -43,17 +61,11 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
 		}
-		else if (shell->lineinfo->spot_hist == (int)shell->history->size)
+		else
 		{
 			shell->lineinfo->linespot = 0;
 			ft_putstr(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history));
 			return(ft_strdup(*(char **)vectspot(shell->lineinfo->spot_hist, shell->history)));
-		}
-		else
-		{
-			shell->lineinfo->linespot = 0;
-			ft_putstr("");
-			return(ft_strdup(""));
 		}
 	}
 	else if (str1[2] == 'B')	//down
@@ -61,6 +73,7 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		LINE;
 		CLEAR_LN;
 		print_interp();
+		free(ret);
 		if (shell->lineinfo->spot_hist > -1)
 		{
 			shell->lineinfo->spot_hist--;
@@ -83,14 +96,40 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 		if (shell->lineinfo->linespot < (int)ft_strlen(ret))
 		{
 			//fix del function
-			;
-			// shell->lineinfo->size--;
-			// LEFT;
-			// DEL_CHAR;
-			// del_fun(ret, shell->lineinfo->linespot);
+			shell->lineinfo->size--;
+			LEFT;
+			DEL_CHAR;
+			ret = del_fun(ret, shell->lineinfo->linespot);
 		}
 	}
+	else if (str1[2] == '1')
+	{
+		ft_bzero(tmp, 3);
+		read(0, tmp, 3);
+		if (tmp[1] == 'D')
+			jumpleft(shell, ret);
+		if (tmp[1] == 'C')
+			ft_putstr("SHIFT RIGHT");
+		if (tmp[1] == 'A')
+			ft_putstr("SHIFT UP");
+		if (tmp[1] == 'B')
+			ft_putstr("SHIFT DOWN");
+
+	}
+
 	return(ft_strjoin(ret, ""));
+}
+
+int isjustwhite(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (str[i])
+		return 0;
+	return (1);
 }
 
 char	*read_tmp(t_shell *shell)
@@ -98,46 +137,35 @@ char	*read_tmp(t_shell *shell)
 	char		*str1;
 	char		*ret;
 	char		*tmp;
-	t_vector	*vect;
-	vect = vect_new(10, sizeof(char*));
+
+	ret = ft_strnew(0);
 	str1 = ft_strnew(BUFF_SIZE);
-	ret = ft_strdup("");
 	termresetline(shell);
 	while (1)
 	{
-		vect_insert(vect, vect->size, &str1);
-		str1 = ft_strnew(BUFF_SIZE);
-		vect_insert(vect, vect->size, &ret);
+		bzero(str1, BUFF_SIZE);
 		read(0, str1, BUFF_SIZE);
-		if (check_char(str1, shell))
+		if (str1[0] == 13 && !shell->lineinfo->dq)
 		{
-			ret = addtobuff(shell, ret, str1);
+			free(str1);
+			break;
+		}
+		if (check_char(str1, shell) || (shell->lineinfo->dq && str1[0] == 13))
+		{
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
+			ret = addtobuff(shell, ret, str1);
 			shell->lineinfo->size++;
 		}
 		else
 			ret = checkarrowkeys(str1, shell, ret);
-		if (str1[0] == 13 && !shell->lineinfo->dq)
-			break;
-		if (shell->lineinfo->dq && str1[0] == 13)
-		{
-			shell->endl++;
-			ft_putchar('\n');
-		}
 	}
-	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0)
+	ft_putchar('\n');
+	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0 && !isjustwhite(ret))
 	{
 		tmp = ft_strdup(ret);
 		vect_insert(shell->history, 0, &tmp);
 	}
-	while (shell->endl)
-	{
-		shell->endl--;
-		insert_char("\n");
-	}
-	col_vect(vect);
-	//history not freed
 	return (ret);
 }

@@ -12,18 +12,29 @@
 
 #include "../headers/minishell.h"
 
-void	runprog(char *test, char **temp, t_vector *vect)
+void	runprog(t_command *curr, t_vector *vect)
 {
 	int		status;
 	int		pid;
 	int		err;
 	char	**env;
+	int		fd[2];
+	static int nice = 0;
 
 	env = cpenv_b(vect);
+
+	if (curr->next)
+		pipe(fd);
 	pid = fork();
 	if (pid == 0)
 	{
-		err = execve(test, temp, env);
+		if (curr->next)
+		{
+			dup2(fd[1],1);
+			close(fd[0]);
+		}
+		dup2(nice, 0);
+		err = execve(curr->args[0], curr->args, env);
 	}
 	else if (pid < 0)
 	{
@@ -34,56 +45,58 @@ void	runprog(char *test, char **temp, t_vector *vect)
 	}
 	signal(SIGINT, NULL);
 	wait(&status);
+	close(fd[1]);
+	nice = fd[0];
 	// free(test);
 }
 
-int		checkloc(char *test, int size, char **temp, t_vector *vect)
+int		checkloc(t_command *curr, int size, t_vector *vect)
 {
 	struct stat sb;
 
-	if (lstat(test, &sb) == -1)
+	if (lstat(curr->args[0], &sb) == -1)
 	{
 		return (size);
 	}
 	else
-		runprog(test, temp, vect);
+		runprog(curr, vect);
 	return (-1);
 }
 
-int		checklocsp(char *test, char **temp, t_vector *vect)
+int		checklocsp(t_command *curr, t_vector *vect)
 {
 	struct stat sb;
 
-	if (lstat(test, &sb) == -1)
+	if (lstat(curr->args[0], &sb) == -1)
 	{
 		return (0);
 	}
 	else
 	{
-		runprog(test, temp, vect);
+		runprog(curr, vect);
 		return (1);
 	}
 }
 
-int		execprog(char *str, char **bins, char **temp, t_vector *vect)
+int		execprog(t_command *curr, char **bins, t_vector *vect)
 {
 	int		size;
 	char	*test;
 
 	size = countarray(bins);
 	size--;
-	size = checkloc(str, size, temp, vect);
+	size = checkloc(curr, size, vect);
 	if (size == -1)
 		return (1);
 	while (size > -1)
 	{
-		test = checkbin(str, bins[size]);
+		test = checkbin(curr->args[0], bins[size]);
 		if (test != NULL)
 		{
 			freedub(bins);
-			free(temp[0]);
-			temp[0] = test;
-			runprog(test, temp, vect);
+			free(curr->args[0]);
+			curr->args[0] = test;
+			runprog(curr, vect);
 			return (1);
 		}
 		else

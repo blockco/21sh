@@ -77,7 +77,10 @@ SRCS =	libft/ft_putchar.c \
 		srcs/insert.c\
 		srcs/check.c \
 		srcs/utils2.c \
-		srcs/parsecmds.c
+		srcs/parsecmds.c \
+		srcs/edit_buff.c \
+		srcs/free_cmd.c \
+		srcs/freetrim.c
 
 OBJS =	$(NAME)
 

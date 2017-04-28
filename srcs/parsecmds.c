@@ -93,30 +93,6 @@ void c_args(t_command *head)
 	}
 }
 
-void printlinkedcmds(t_command *head)
-{
-	t_command *cur;
-	t_file		*h_file;
-	cur = head;
-	while (cur)
-	{
-		h_file = cur->head_file;
-		int i = 0;
-		while (cur->args[i])
-			ft_putendl(cur->args[i++]);
-		ft_putnbr(cur->pipeout);
-		ft_putchar('\n');
-		while (h_file)
-		{
-			ft_putendl("in redirect files");
-			if (h_file->file)
-				ft_putendl(h_file->file);
-			h_file = h_file->next;
-		}
-		cur = cur->next;
-	}
-}
-
 void createcmds(t_command *head, char **temp)
 {
 	int i;
@@ -194,7 +170,6 @@ void createcmds(t_command *head, char **temp)
 		temp += i;
 	}
 	temp -=  a;
-
 	c_args(head);
 	// printlinkedcmds(head);
 	// free_cmd_list(head);

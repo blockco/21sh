@@ -12,48 +12,48 @@
 
 #include "../headers/minishell.h"
 
-int	extendrun(char **temp, t_vector *vect)
+int	extendrun(t_command *curr, t_vector *vect)
 {
-	if (temp[0] && ft_strcmp(temp[0], "setenv") == 0)
+	if (curr->args[0] && ft_strcmp(curr->args[0], "setenv") == 0)
 	{
-		if (temp[1])
-			setenv_b(temp[1], temp[2], vect);
+		if (curr->args[1])
+			setenv_b(curr->args[1], curr->args[2], vect);
 		return (1);
 	}
-	if (temp[0] && ft_strcmp(temp[0], "unsetenv") == 0)
+	if (curr->args[0] && ft_strcmp(curr->args[0], "unsetenv") == 0)
 	{
-		if (temp[1])
-			unsetenv_b(temp[1], vect);
+		if (curr->args[1])
+			unsetenv_b(curr->args[1], vect);
 		return (1);
 	}
-	if (temp[0] && ft_strcmp(temp[0], "echo") == 0)
+	if (curr->args[0] && ft_strcmp(curr->args[0], "echo") == 0)
 	{
-		if (temp[1])
-			echo_b(temp);
+		if (curr->args[1])
+			echo_b(curr->args);
 		return (1);
 	}
-	if (temp[0] && (ft_strcmp(temp[0], "exit") == 0
-	|| ft_strcmp(temp[0], "EXIT") == 0))
+	if (curr->args[0] && (ft_strcmp(curr->args[0], "exit") == 0
+	|| ft_strcmp(curr->args[0], "EXIT") == 0))
 		return (-1);
 	return (0);
 }
 
-int	runbuilt(char **temp, t_vector *vect)
+int	runbuilt(t_command *curr, t_vector *vect)
 {
-	if (temp[0] && ft_strcmp(temp[0], "env") == 0)
+	if (curr->args[0] && ft_strcmp(curr->args[0], "env") == 0)
 	{
 		getenv_b(vect);
 		return (1);
 	}
-	if (temp[0] && ft_strcmp(temp[0], "cd") == 0)
+	if (curr->args[0] && ft_strcmp(curr->args[0], "cd") == 0)
 	{
-		if (temp[1] == NULL)
+		if (curr->args[1] == NULL)
 			changedirs(NULL, vect);
-		else if (temp[1] && temp[2] == NULL)
-			changedirs(temp[1], vect);
+		else if (curr->args[1] && curr->args[2] == NULL)
+			changedirs(curr->args[1], vect);
 		else
 			ft_putendl("to many arguments in cd");
 		return (1);
 	}
-	return (extendrun(temp, vect));
+	return (extendrun(curr, vect));
 }

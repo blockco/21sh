@@ -14,6 +14,42 @@
 #include "../libft/libft.h"
 #include "../headers/vector.h"
 
+
+//debug scriptt
+void printlinkedcmds(t_command *head)
+{
+	t_command *cur;
+	t_file		*h_file;
+	cur = head;
+
+	while (cur)
+	{
+		ft_putendl("IS A CMD");
+		ft_putendl("");
+		h_file = cur->head_file;
+		int i = 0;
+		ft_putnbr(cur->pipein);
+		ft_putendl(" = pipeIN");
+		ft_putnbr(cur->pipeout);
+		ft_putendl(" = pipeOUT");
+		while (cur->args[i])
+			ft_putendl(cur->args[i++]);
+		ft_putnbr(cur->pipeout);
+		ft_putchar('\n');
+		while (h_file)
+		{
+			ft_putendl("in redirect files");
+			if (h_file->file)
+				ft_putendl(h_file->file);
+			h_file = h_file->next;
+		}
+		ft_putendl("IS A CMD");
+		ft_putendl("");
+		cur = cur->next;
+	}
+}
+//debug scriptt
+
 void	nonrun(char **temp)
 {
 	ft_putstr("unknown command rsh: ");
@@ -35,16 +71,16 @@ void	handlearg(int argc, char **argv)
 		;
 }
 
-void	logicrun(int ret, char **temp, t_vector *vect)
+void	logicrun(int ret, t_command *curr, t_vector *vect)
 {
 	if (ret == 1 || ret == -1)
 		return;
 		// freedub(temp);
-	else if (!checklocsp(temp[0], temp, vect))
+	else if (!checklocsp(curr, vect))
 	{
 		if (findenvvarint(vect, "PATH") == -1 ||
-		(temp[0] && !execprog(temp[0], getbins(vect), temp, vect)))
-			nonrun(temp);
+		(curr->args[0] && !execprog(curr, getbins(vect), vect)))
+			nonrun(curr->args);
 	}
 	// else
 	// 	dofree(temp);
@@ -78,6 +114,7 @@ int loopredir(t_command *curr, t_vector *vect)
 	int fd;
 	t_file *h_file;
 
+	// printlinkedcmds(curr);
 	h_file = curr->head_file;
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
@@ -89,8 +126,8 @@ int loopredir(t_command *curr, t_vector *vect)
 		close(fd);
 		h_file = h_file->next;
 	}
-	ret = runbuilt(curr->args, vect);
-	logicrun(ret, curr->args, vect);
+	ret = runbuilt(curr, vect);
+	logicrun(ret, curr, vect);
 	return (ret);
 }
 
@@ -114,15 +151,16 @@ int		main(int argc, char **argv, char **envp)
 	handlearg(argc, argv);
 	vect = vect_new(32, sizeof(char*));
 	storeenv(vect, envp);
-	head = malloc(sizeof(t_command));
 	while (1)
 	{
 		print_interp();
 		str = read_tmp(shell);
+		str = ft_freetrim(str);
 		cmds = ft_strsplit(str, ';');
 		i = 0;
 		while (cmds[i])
 		{
+			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
 			temp = parseinput(use);
 			checkenv(temp, vect);
@@ -139,13 +177,14 @@ int		main(int argc, char **argv, char **envp)
 			}
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
+			head = NULL;
+			free_cmd_list(head);
 			// free(use);
 			i++;
 			if (ret == -1)
 				break ;
 			// freedub(temp);
 		}
-		// freedub(cmds);
 		if (ret == -1)
 			break ;
 	}
