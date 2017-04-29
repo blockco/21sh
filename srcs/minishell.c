@@ -104,11 +104,13 @@ int openfile(t_file *file)
 		return(open(file->file, O_WRONLY | O_APPEND | O_CREAT, 0600));
 	if (file->redir == 4)
 		return(open(file->file, O_RDONLY));
+	if (file->redir == 5)
+		return(open("/tmp/heredoc", O_WRONLY | O_TRUNC | O_CREAT, 0600));
 	ft_putendl("did not open!!!");
 	return -1;
 }
 
-int loopredir(t_command *curr, t_vector *vect)
+int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 {
 	int ret;
 	int fd;
@@ -123,6 +125,13 @@ int loopredir(t_command *curr, t_vector *vect)
 			dup2(fd, 1);
 		if (h_file->redir == 4)
 			dup2(fd, 0);
+		if (h_file->redir == 5)
+		{
+			read_tmp_here(shell, h_file->file, fd);
+			close(fd);
+			fd = open("/tmp/heredoc", O_RDONLY);
+			dup2(fd, 0);
+		}
 		close(fd);
 		h_file = h_file->next;
 	}
@@ -171,7 +180,7 @@ int		main(int argc, char **argv, char **envp)
 			{
 				// ret = runbuilt(curr->args, vect);
 				// logicrun(ret, curr->args, vect);
-				ret = loopredir(curr,vect);
+				ret = loopredir(curr,vect,shell);
 				curr = curr->next;
 				if (ret == -1)
 					break;

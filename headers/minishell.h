@@ -138,6 +138,10 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
+//heredoc
+void	*read_tmp_here(t_shell *shell, char *stopper, int fd);
+
+
 //small fix helpers
 char	*ft_freetrim(char *s);
 

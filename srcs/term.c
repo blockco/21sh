@@ -29,9 +29,9 @@ int			setup_term(t_shell *shell)
 	tcgetattr(STDIN_FILENO, &shell->old);
 	// tcgetattr(STDIN_FILENO, &tattr);
 	tattr = shell->old;
+	tattr.c_lflag &= ~(ECHO | ICANON);
 	tattr.c_iflag &= ~(BRKINT | ISTRIP
 	| INPCK | IXON | ICRNL);
-	tattr.c_lflag &= ~(ECHO | ICANON);
 	tattr.c_cflag &= ~(CSIZE | PARENB);
 	tattr.c_cflag |= CS8;
 	// tattr.c_oflag &= (OPOST);

@@ -151,10 +151,10 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			jumpleft(shell, ret);
 		if (tmp[1] == 'C')
 			jumpright(shell, ret);
-		if (tmp[1] == 'A')
-			ft_putstr("SHIFT UP");
-		if (tmp[1] == 'B')
-			ft_putstr("SHIFT DOWN");
+		// if (tmp[1] == 'A')
+		// 	ft_putstr("SHIFT UP");
+		// if (tmp[1] == 'B')
+		// 	ft_putstr("SHIFT DOWN");
 	}
 
 	return(ft_strjoin(ret, ""));
