@@ -113,6 +113,7 @@ typedef struct s_lineman
 	int size;
 	int spot_hist;
 	int dq;
+	char dqbuff;
 }				t_lineman;
 
 typedef struct	s_shell

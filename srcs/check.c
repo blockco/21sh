@@ -2,12 +2,13 @@
 
 int check_char(char *data, t_shell *shell)
 {
-	if (data[0] == '"' && !shell->lineinfo->dq)
+	if ((data[0] == '"' || data[0] == 39) && !shell->lineinfo->dq)
 	{
 		shell->lineinfo->dq = 1;
+		shell->lineinfo->dqbuff = data[0];
 		return 1;
 	}
-	else if (data[0] == '"' && shell->lineinfo->dq)
+	else if (data[0] == shell->lineinfo->dqbuff && shell->lineinfo->dq)
 	{
 		shell->lineinfo->dq = 0;
 		return 1;
