@@ -190,6 +190,10 @@ char	*read_tmp(t_shell *shell)
 			free(str1);
 			break;
 		}
+		else if (str1[0] == 13 && shell->lineinfo->dq)
+		{
+			ft_putchar('\n');
+		}
 		if (check_char(str1, shell) || (shell->lineinfo->dq && str1[0] == 13))
 		{
 			INSERT_MODE_ON;
