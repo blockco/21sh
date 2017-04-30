@@ -16,12 +16,28 @@ int countword_dq(char *str, int i, char dqbuff)
 int countword(char *str, int i)
 {
 	int c;
+	int dq;
+	char dqbuff;
 
 	c = 0;
-	while(str[i] && str[i] > 32)
+	while((str[i] && str[i] > 32) || dq)
 	{
-		i++;
-		c++;
+		if ((str[i] == '"' || str[i] == 39 || str[i] == 40) && !dq)
+		{
+			dq = 1;
+			dqbuff = str[i];
+			i++;
+		}
+		else if (str[i] == dqbuff && dq)
+		{
+			dq = 0;
+			i++;
+		}
+		else
+		{
+			i++;
+			c++;
+		}
 	}
 	return c;
 }
@@ -35,8 +51,10 @@ char **new_parse(char *str)
 	int c;
 	int b;
 	int i;
+	int dq;
 	int curword;
 
+	dq = 0;
 	i = 0;
 	curword = 0;
 	words = 0;
@@ -48,7 +66,7 @@ char **new_parse(char *str)
 			i++;
 		if (str[i] && (str[i] == '"' || str[i] == 39 || str[i] == 40))
 		{
-			ft_putendl("here");
+			// ft_putendl("here");
 			ret = ft_realloc(ret, sizeof(char*) * (words + 2));
 			if (str[i] == 40)
 				dqbuff = 41;
@@ -78,12 +96,24 @@ char **new_parse(char *str)
 			b = 0;
 			while(c > 0)
 			{
-				ft_putendl("here");
-				ft_putchar(str[i]);
-				cur[b] = str[i];
-				i++;
-				b++;
-				c--;
+				if ((str[i] == '"' || str[i] == 39 || str[i] == 40) && !dq)
+				{
+					dq = 1;
+					dqbuff = str[i];
+					i++;
+				}
+				else if (str[i] == dqbuff && dq)
+				{
+					dq = 0;
+					i++;
+				}
+				else
+				{
+					cur[b] = str[i];
+					i++;
+					b++;
+					c--;
+				}
 			}
 			// ft_putendl("here");
 			ret[words] = ft_strdup(cur);
