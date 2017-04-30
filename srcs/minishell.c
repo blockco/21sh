@@ -52,8 +52,10 @@ void printlinkedcmds(t_command *head)
 
 void	nonrun(char **temp)
 {
+	INSERT_MODE_ON;
 	ft_putstr("unknown command rsh: ");
 	ft_putendl(temp[0]);
+	INSERT_MODE_OFF;
 	freedub(temp);
 }
 
@@ -172,7 +174,8 @@ int		main(int argc, char **argv, char **envp)
 		{
 			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
-			temp = parseinput(use);
+			// temp = parseinput(use);
+			temp = new_parse(use);
 			checkenv(temp, vect);
 			createcmds(head, temp);
 			curr = head;

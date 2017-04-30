@@ -139,6 +139,8 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
+char **new_parse(char *str);
+
 //heredoc
 void	*read_tmp_here(t_shell *shell, char *stopper, int fd);
 

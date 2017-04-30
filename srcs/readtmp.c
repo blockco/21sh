@@ -136,7 +136,6 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	{
 		if (shell->lineinfo->linespot < (int)ft_strlen(ret))
 		{
-			//fix del function
 			shell->lineinfo->size--;
 			LEFT;
 			DEL_CHAR;
@@ -177,7 +176,9 @@ char	*read_tmp(t_shell *shell)
 	char		*str1;
 	char		*ret;
 	char		*tmp;
+	int i;
 
+	i = 0;
 	ret = ft_strnew(0);
 	str1 = ft_strnew(BUFF_SIZE);
 	termresetline(shell);
@@ -192,7 +193,10 @@ char	*read_tmp(t_shell *shell)
 		}
 		else if (str1[0] == 13 && shell->lineinfo->dq)
 		{
+			INSERT_MODE_ON;
 			ft_putchar('\n');
+			INSERT_MODE_OFF;
+			i++;
 		}
 		if (check_char(str1, shell) || (shell->lineinfo->dq && str1[0] == 13))
 		{
@@ -206,6 +210,12 @@ char	*read_tmp(t_shell *shell)
 			ret = checkarrowkeys(str1, shell, ret);
 	}
 	ft_putchar('\n');
+	while (i--)
+	{
+		INSERT_MODE_ON;
+		ft_putchar('\n');
+		INSERT_MODE_OFF;
+	}
 	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0 && !isjustwhite(ret))
 	{
 		tmp = ft_strdup(ret);
