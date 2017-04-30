@@ -1,6 +1,6 @@
 # minishell
 
-Minishell is a project at 42 US
+21sh is a project at 42 US
 
 Objectives:
   Reimplement a Unix shell from scratch
@@ -12,10 +12,16 @@ Objectives:
     echo
     unsetenv
     setenv
-    
+
 Supports
    cd -
    cd
    cd ~
    echo $ANYVAR
+
+TODO: 	HOME END KEYS
+		Move ECHO and ENV
+		Fix some Seg faults
+		File Agregration
+		fix no file red error
 # 21sh
