@@ -203,6 +203,8 @@ char	*read_tmp(t_shell *shell)
 			INSERT_MODE_ON;
 			ft_putstr(str1);
 			INSERT_MODE_OFF;
+			if (str1[0] == 13)
+				str1[0] = '\n';
 			ret = addtobuff(shell, ret, str1);
 			shell->lineinfo->size++;
 		}
@@ -210,12 +212,6 @@ char	*read_tmp(t_shell *shell)
 			ret = checkarrowkeys(str1, shell, ret);
 	}
 	ft_putchar('\n');
-	while (i--)
-	{
-		INSERT_MODE_ON;
-		ft_putchar('\n');
-		INSERT_MODE_OFF;
-	}
 	if (ft_strcmp("", ret) && shell->lineinfo->spot_hist == -1 && ft_strcmp(vectspot(0, shell->history), ret) != 0 && !isjustwhite(ret))
 	{
 		tmp = ft_strdup(ret);

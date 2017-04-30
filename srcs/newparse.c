@@ -78,6 +78,8 @@ char **new_parse(char *str)
 			b = 0;
 			while(c > 0)
 			{
+				ft_putendl("here");
+				ft_putchar(str[i]);
 				cur[b] = str[i];
 				i++;
 				b++;
