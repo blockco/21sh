@@ -15,7 +15,6 @@ char **check_file_agg(char **temp)
 			a++;
 			ret = ft_realloc(ret, ((sizeof(char*) + 1) * a));
 			ret[a - 1] = ft_strdup(temp[i]);
-			// ft_putendl(temp[i]);
 		}
 		i++;
 	}
@@ -44,30 +43,35 @@ int is_file_agg(char *str)
 		else
 		{
 			//cleanup
+			freedub(split);
 			return 0;
 		}
-		// ft_putendl("in the split");
 		split[0][(int)ft_strlen(split[0]) - 1] = '\0';
 		if (ft_strcmp(split[1], "-") == 0 && is_all_num(split[0]))
 		{
 			close (ft_atoi(split[0]));
+			freedub(split);
 			return 1;
 		}
 		else if (ft_strcmp(split[0], "-") == 0 && is_all_num(split[1]))
 		{
 			close (ft_atoi(split[0]));
+			freedub(split);
 			return 1;
 		}
 		else if (is_all_num(split[0]) && is_all_num(split[1]) && dir == 0)
 		{
 			dup2(ft_atoi(split[1]), ft_atoi(split[0]));
+			freedub(split);
 			return 1;
 		}
 		else if (is_all_num(split[0]) && is_all_num(split[1]) && dir == 1)
 		{
 			dup2(ft_atoi(split[0]), ft_atoi(split[1]));
+			freedub(split);
 			return 1;
 		}
 	}
+	freedub(split);
 	return 0;
 }
