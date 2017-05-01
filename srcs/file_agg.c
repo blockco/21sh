@@ -19,7 +19,7 @@ char **check_file_agg(char **temp)
 		i++;
 	}
 	ret[a] = NULL;
-	freedub(temp);
+	// freedub(temp);
 	return ret;
 }
 
@@ -72,6 +72,6 @@ int is_file_agg(char *str)
 			return 1;
 		}
 	}
-	freedub(split);
+	// freedub(split);
 	return 0;
 }

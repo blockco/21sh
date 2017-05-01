@@ -107,7 +107,7 @@ void createcmds(t_command *head, char **temp)
 		i = 0;
 
 		new->args = malloc(sizeof(char*) * findargs(temp) + 1);
-		while (temp[i] && !isredir(temp[i]))
+		while ((temp[i] && !isredir(temp[i])) || (temp[i] && i == 0))
 		{
 			new->args[i] = ft_strdup(temp[i]);
 			i++;

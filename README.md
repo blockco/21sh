@@ -22,6 +22,5 @@ Supports
 TODO: 	HOME END KEYS
 		Move ECHO and ENV
 		Fix some Seg faults
-		File Agregration
 		fix no file red error
 # 21sh
