@@ -139,6 +139,11 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
+//file agg
+int is_all_num(char *str);
+int is_file_agg(char *str);
+char **check_file_agg(char **temp);
+
 char **new_parse(char *str);
 
 //heredoc

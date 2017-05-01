@@ -18,7 +18,7 @@
 //debug scriptt
 void printlinkedcmds(t_command *head)
 {
-	t_command *cur;
+	t_command 	*cur;
 	t_file		*h_file;
 	cur = head;
 
@@ -176,8 +176,10 @@ int		main(int argc, char **argv, char **envp)
 			use = ft_strtrim(cmds[i]);
 			// temp = parseinput(use);
 			temp = new_parse(use);
+			temp = check_file_agg(temp);
 			checkenv(temp, vect);
 			createcmds(head, temp);
+			// ft_putendl("here");
 			curr = head;
 			while (curr)
 			{
