@@ -190,6 +190,13 @@ int		main(int argc, char **argv, char **envp)
 			// 	z++;
 			// }
 			temp = check_file_agg(temp);
+			ft_putendl("passed the file agg");
+			if (temp[0] == NULL)
+			{
+				ft_putendl("NULL AF");
+				i++;
+				continue;
+			}
 			checkenv(temp, vect);
 			createcmds(head, temp);
 			curr = head;
