@@ -73,7 +73,7 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
 	char tmp[3];
 	shell->lineinfo->size = ft_strlen(ret);
-	if (isatty(str1[0]))
+	if (str1[0] == 4)
 	{
 		shellexit(shell);
 		exit(0);
@@ -136,12 +136,6 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 				return(ft_strdup(""));
 			}
 		}
-	}
-	else if (str1[2] == 'H')	//home
-	{
-		ft_putendl("home");
-		LINE;
-		CLEAR_LN;
 	}
 	else if (str1[0] == 127)
 	{
