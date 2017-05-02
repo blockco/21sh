@@ -123,7 +123,7 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	h_file = curr->head_file;
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
-		if (h_file->redir != 5)
+		if (h_file->redir == 5)
 			fd = openfile(h_file);
 		if (h_file->redir == 2 || h_file->redir == 3)
 			dup2(fd, 1);
@@ -174,7 +174,7 @@ int		main(int argc, char **argv, char **envp)
 		i = 0;
 		while (cmds[i])
 		{
-			// ft_putendl("here1");
+			ft_putendl("here1");
 			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
 			// temp = parseinput(use);
