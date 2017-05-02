@@ -13,7 +13,7 @@ char **check_file_agg(char **temp)
 		if (!is_file_agg(temp[i]))
 		{
 			a++;
-			ret = ft_realloc(ret, ((sizeof(char*) + 1) * a));
+			ret = ft_realloc(ret, ((sizeof(char*)) * (a + 1)));
 			ret[a - 1] = ft_strdup(temp[i]);
 		}
 		i++;
@@ -55,7 +55,7 @@ int is_file_agg(char *str)
 		}
 		else if (ft_strcmp(split[0], "-") == 0 && is_all_num(split[1]))
 		{
-			close (ft_atoi(split[0]));
+			close (ft_atoi(split[1]));
 			freedub(split);
 			return 1;
 		}

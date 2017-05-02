@@ -139,6 +139,8 @@ typedef struct	s_parse
 	int			i;
 }				t_parse;
 
+int shellexit(t_shell *shell);
+
 //file agg
 int is_all_num(char *str);
 int is_file_agg(char *str);

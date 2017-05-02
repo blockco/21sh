@@ -73,6 +73,11 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 {
 	char tmp[3];
 	shell->lineinfo->size = ft_strlen(ret);
+	if (isatty(tmp[0]))
+	{
+		shellexit(shell);
+		exit(0);
+	}
 	if (str1[2] == 'C') 		//right
 	{
 		if (shell->lineinfo->linespot > 0)
