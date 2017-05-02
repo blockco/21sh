@@ -8,18 +8,19 @@ char **check_file_agg(char **temp)
 
 	i = 0;
 	a = 0;
+	ret = NULL;
 	while (temp[i])
 	{
 		if (!is_file_agg(temp[i]))
 		{
+			// ft_putendl(temp[i]);
 			a++;
-			ret = ft_realloc(ret, ((sizeof(char*)) * (a + 1)));
+			ret = (char**)ft_realloc(ret, ((sizeof(char*)) * (a + 1)));
 			ret[a - 1] = ft_strdup(temp[i]);
 		}
 		i++;
 	}
 	ret[a] = NULL;
-	// freedub(temp);
 	return ret;
 }
 
@@ -43,7 +44,7 @@ int is_file_agg(char *str)
 		else
 		{
 			//cleanup
-			freedub(split);
+			// freedub(split);
 			return 0;
 		}
 		split[0][(int)ft_strlen(split[0]) - 1] = '\0';

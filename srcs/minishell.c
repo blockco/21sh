@@ -174,11 +174,21 @@ int		main(int argc, char **argv, char **envp)
 		i = 0;
 		while (cmds[i])
 		{
-			ft_putendl("here1");
+			// ft_putendl("here1");
+
 			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
 			// temp = parseinput(use);
 			temp = new_parse(use);
+			// int z;
+			// z = 0;
+			// while (temp[z])
+			// {
+			//
+			// 	ft_putnbr(z);
+			// 	ft_putendl(temp[z]);
+			// 	z++;
+			// }
 			temp = check_file_agg(temp);
 			checkenv(temp, vect);
 			createcmds(head, temp);
@@ -204,7 +214,7 @@ int		main(int argc, char **argv, char **envp)
 			// freedub(temp);
 			// ft_putendl("here2");
 		}
-		ft_putendl("here3");
+		// ft_putendl("here3");
 		if (ret == -1)
 			break ;
 	}

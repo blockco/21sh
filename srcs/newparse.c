@@ -58,16 +58,14 @@ char **new_parse(char *str)
 	i = 0;
 	curword = 0;
 	words = 0;
-	ret = malloc(sizeof(char*) * 1);
 	while(str[i])
 	{
-		// ft_putchar(str[i]);
 		while (str[i] < 33)
 			i++;
 		if (str[i] && (str[i] == '"' || str[i] == 39 || str[i] == 40))
 		{
-			// ft_putendl("here");
-			ret = ft_realloc(ret, sizeof(char*) * (words + 2));
+			words++;
+			ret = ft_realloc(ret, sizeof(char*) * (words));
 			if (str[i] == 40)
 				dqbuff = 41;
 			else
@@ -83,14 +81,14 @@ char **new_parse(char *str)
 				b++;
 				c--;
 			}
-			ret[words] = ft_strdup(cur);
+			ret[words - 1] = ft_strdup(cur);
 			free(cur);
-			words++;
 			i++;
 		}
 		else if (str[i])
 		{
-			ret = ft_realloc(ret, sizeof(char*) * (words + 2));
+			words++;
+			ret = ft_realloc(ret, sizeof(char*) * (words));
 			c = countword(str, i);
 			cur = ft_strnew(c);
 			b = 0;
@@ -115,12 +113,13 @@ char **new_parse(char *str)
 					c--;
 				}
 			}
-			// ft_putendl("here");
-			ret[words] = ft_strdup(cur);
+			ret[words - 1] = ft_strdup(cur);
 			free(cur);
-			words++;
 		}
-		ret[words] = NULL;
+		ret = ft_realloc(ret, sizeof(char*) * (words + 1));
+		ret[words] = 0;
 	}
+	int z;
+	z = 0;
 	return ret;
 }
