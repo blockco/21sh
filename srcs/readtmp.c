@@ -75,8 +75,8 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 	shell->lineinfo->size = ft_strlen(ret);
 	if (str1[0] == 4)
 	{
+		free (ret);
 		shellexit(shell);
-		exit(0);
 	}
 	if (str1[2] == 'C') 		//right
 	{
@@ -155,10 +155,6 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			jumpleft(shell, ret);
 		if (tmp[1] == 'C')
 			jumpright(shell, ret);
-		// if (tmp[1] == 'A')
-		// 	ft_putstr("SHIFT UP");
-		// if (tmp[1] == 'B')
-		// 	ft_putstr("SHIFT DOWN");
 	}
 
 	return(ft_strjoin(ret, ""));
