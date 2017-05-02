@@ -21,7 +21,6 @@ Supports
 
 TODO: 	HOME END KEYS
 		Move ECHO and ENV
-		Fix some Seg faults
 		fix no file red error
 		fix hist error
 # 21sh
