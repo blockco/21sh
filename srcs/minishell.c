@@ -34,8 +34,6 @@ void printlinkedcmds(t_command *head)
 		ft_putendl(" = pipeOUT");
 		while (cur->args[i])
 			ft_putendl(cur->args[i++]);
-		ft_putnbr(cur->pipeout);
-		ft_putchar('\n');
 		while (h_file)
 		{
 			ft_putendl("in redirect files");
@@ -119,12 +117,10 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	int fd;
 	t_file *h_file;
 
-	// printlinkedcmds(curr);
 	h_file = curr->head_file;
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
-		if (h_file->redir == 5)
-			fd = openfile(h_file);
+		fd = openfile(h_file);
 		if (h_file->redir == 2 || h_file->redir == 3)
 			dup2(fd, 1);
 		if (h_file->redir == 4)
