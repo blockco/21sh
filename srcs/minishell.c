@@ -54,7 +54,6 @@ void	nonrun(char **temp)
 	ft_putstr("unknown command rsh: ");
 	ft_putendl(temp[0]);
 	INSERT_MODE_OFF;
-	freedub(temp);
 }
 
 void	dofree(char **temp)
@@ -183,6 +182,7 @@ int		main(int argc, char **argv, char **envp)
 			checkenv(temp, vect);
 			createcmds(head, temp);
 			curr = head;
+			// printlinkedcmds(head);
 			while (curr)
 			{
 				ret = loopredir(curr,vect,shell);
@@ -194,7 +194,7 @@ int		main(int argc, char **argv, char **envp)
 			dup2(shell->std_in, 0);
 			// ft_putendl("here4");
 			// curr = NULL;
-			// free_cmd_list(head);
+			free_cmd_list(head);
 			// head = NULL;
 			// free(use);
 			i++;
