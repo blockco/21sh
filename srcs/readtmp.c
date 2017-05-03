@@ -137,6 +137,22 @@ char *checkarrowkeys(char *str1, t_shell *shell, char *ret)
 			}
 		}
 	}
+	else if (str1[2] == 'H')
+	{
+		while (shell->lineinfo->linespot < (int)ft_strlen(ret))
+		{
+			LEFT;
+			shell->lineinfo->linespot++;
+		}
+	}
+	else if (str1[2] == 'F')
+	{
+		while (shell->lineinfo->linespot > 0)
+		{
+			shell->lineinfo->linespot--;
+			RIGHT;
+		}
+	}
 	else if (str1[0] == 127)
 	{
 		if (shell->lineinfo->linespot < (int)ft_strlen(ret))

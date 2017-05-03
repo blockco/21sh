@@ -118,8 +118,10 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	t_file *h_file;
 
 	h_file = curr->head_file;
+	ft_putendl("here2");
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
+		ft_putendl("here3");
 		fd = openfile(h_file);
 		if (h_file->redir == 2 || h_file->redir == 3)
 			dup2(fd, 1);
@@ -192,7 +194,10 @@ int		main(int argc, char **argv, char **envp)
 				continue;
 			}
 			checkenv(temp, vect);
+			ft_putendl("IN");
 			createcmds(head, temp);
+			ft_putendl("OUT!!");
+			// printlinkedcmds(head);
 			curr = head;
 			while (curr)
 			{
@@ -205,10 +210,11 @@ int		main(int argc, char **argv, char **envp)
 			}
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
+			ft_putendl("here4");
 			// curr = NULL;
 			// free_cmd_list(head);
+			// head = NULL;
 			// free(use);
-			// printlinkedcmds(head);
 			i++;
 			if (ret == -1)
 				break ;
