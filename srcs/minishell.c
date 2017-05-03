@@ -118,10 +118,8 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	t_file *h_file;
 
 	h_file = curr->head_file;
-	ft_putendl("here2");
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
-		ft_putendl("here3");
 		fd = openfile(h_file);
 		if (h_file->redir == 2 || h_file->redir == 3)
 			dup2(fd, 1);
@@ -172,21 +170,10 @@ int		main(int argc, char **argv, char **envp)
 		i = 0;
 		while (cmds[i])
 		{
-			// ft_putendl("here1");
-
 			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
 			// temp = parseinput(use);
 			temp = new_parse(use);
-			// int z;
-			// z = 0;
-			// while (temp[z])
-			// {
-			//
-			// 	ft_putnbr(z);
-			// 	ft_putendl(temp[z]);
-			// 	z++;
-			// }
 			temp = check_file_agg(temp);
 			if (temp[0] == NULL)
 			{
@@ -194,15 +181,10 @@ int		main(int argc, char **argv, char **envp)
 				continue;
 			}
 			checkenv(temp, vect);
-			ft_putendl("IN");
 			createcmds(head, temp);
-			ft_putendl("OUT!!");
-			// printlinkedcmds(head);
 			curr = head;
 			while (curr)
 			{
-				// ret = runbuilt(curr->args, vect);
-				// logicrun(ret, curr->args, vect);
 				ret = loopredir(curr,vect,shell);
 				curr = curr->next;
 				if (ret == -1)
@@ -210,7 +192,7 @@ int		main(int argc, char **argv, char **envp)
 			}
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
-			ft_putendl("here4");
+			// ft_putendl("here4");
 			// curr = NULL;
 			// free_cmd_list(head);
 			// head = NULL;

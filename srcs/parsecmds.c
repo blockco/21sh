@@ -107,7 +107,6 @@ void createcmds(t_command *head, char **temp)
 		i = 0;
 
 		new->args = malloc(sizeof(char*) * findargs(temp) + 1);
-		// ft_putendl(temp[0]);
 		while (temp[i] && !isredir(temp[i]))
 		{
 			new->args[i] = ft_strdup(temp[i]);
@@ -172,8 +171,5 @@ void createcmds(t_command *head, char **temp)
 		temp += i;
 	}
 	temp -=  a;
-	ft_putendl("here1");
 	c_args(head);
-	// printlinkedcmds(head);
-	// free_cmd_list(head);
 }
