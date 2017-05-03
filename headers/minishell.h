@@ -132,12 +132,19 @@ typedef struct	s_shell
 typedef struct	s_parse
 {
 	char		**retstr;
+	char		dqbuff;
 	int			start;
 	int			end;
 	int			dq;
 	int			count;
 	int			i;
 }				t_parse;
+
+//testing parse function
+char	**split_quotes(char *str, char **newt, int *i);
+char	**extract_cmd(char *str, char **newt, int *i);
+char	check_expansions(char exp);
+char	**twsplit(char *str);
 
 int shellexit(t_shell *shell);
 

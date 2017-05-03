@@ -1,125 +1,120 @@
 #include "../headers/minishell.h"
 
-int countword_dq(char *str, int i, char dqbuff)
-{
-	int c;
-
-	c = 0;
-	while(str[i] && (str[i] != dqbuff))
-	{
-		i++;
-		c++;
-	}
-	return c;
-}
-
-int countword(char *str, int i)
-{
-	int c;
-	int dq;
-	char dqbuff;
-
-	c = 0;
-	while((str[i] && str[i] > 32) || dq)
-	{
-		if ((str[i] == '"' || str[i] == 39 || str[i] == 40) && !dq)
-		{
-			dq = 1;
-			dqbuff = str[i];
-			i++;
-		}
-		else if (str[i] == dqbuff && dq)
-		{
-			dq = 0;
-			i++;
-		}
-		else
-		{
-			i++;
-			c++;
-		}
-	}
-	return c;
-}
-
-char **new_parse(char *str)
+char	**ft_tdnew(int size)
 {
 	char **ret;
-	char *cur;
-	char dqbuff;
-	int words;
-	int c;
-	int b;
 	int i;
-	int dq;
-	int curword;
 
-	dq = 0;
 	i = 0;
-	curword = 0;
-	words = 0;
-	while(str[i])
+	ret = (char**)malloc(sizeof(char*) + 1);
+	while(i <= size)
 	{
-		while (str[i] < 33)
-			i++;
-		if (str[i] && (str[i] == '"' || str[i] == 39 || str[i] == 40))
-		{
-			words++;
-			ret = ft_realloc(ret, sizeof(char*) * (words));
-			if (str[i] == 40)
-				dqbuff = 41;
-			else
-				dqbuff = str[i];
-			i++;
-			c = countword_dq(str, i, dqbuff);
-			cur = ft_strnew(c);
-			b = 0;
-			while(c > 0)
-			{
-				cur[b] = str[i];
-				i++;
-				b++;
-				c--;
-			}
-			ret[words - 1] = ft_strdup(cur);
-			free(cur);
-			i++;
-		}
-		else if (str[i])
-		{
-			words++;
-			ret = ft_realloc(ret, sizeof(char*) * (words));
-			c = countword(str, i);
-			cur = ft_strnew(c);
-			b = 0;
-			while(c > 0)
-			{
-				if ((str[i] == '"' || str[i] == 39 || str[i] == 40) && !dq)
-				{
-					dq = 1;
-					dqbuff = str[i];
-					i++;
-				}
-				else if (str[i] == dqbuff && dq)
-				{
-					dq = 0;
-					i++;
-				}
-				else
-				{
-					cur[b] = str[i];
-					i++;
-					b++;
-					c--;
-				}
-			}
-			ret[words - 1] = ft_strdup(cur);
-			free(cur);
-		}
-		ret = ft_realloc(ret, sizeof(char*) * (words + 1));
-		ret[words] = 0;
+		ret[i] = NULL;
+		i++;
 	}
-	int z;
-	z = 0;
 	return ret;
+}
+
+char	**ft_realloc2(char **arr)
+{
+	char	**newy;
+	int		size;
+	int		i;
+	int		j;
+
+	size = 0;
+	i = -1;
+	j = -1;
+	while (arr && arr[size])
+		size++;
+	newy = ft_tdnew(size + 1);
+	newy[size + 1] = 0;
+	newy[size] = 0;
+	while (arr && arr[++i] != 0)
+		newy[i] = ft_strdup(arr[i]);
+	while (arr && arr[++j])
+		free(arr[j]);
+	return (newy);
+}
+
+char	**twsplit(char *str)
+{
+	int		i;
+	char	**newt;
+
+	i = 0;
+	newt = NULL;
+	while (str && str[i])
+	{
+		if (str[i] == 34 || str[i] == 39 || str[i] == 96 ||
+				str[i] == 40 || str[i] == 91)
+			newt = split_quotes(str, newt, &i);
+		else if (str[i] != ' ' && str[i] != '\t')
+			newt = extract_cmd(str, newt, &i);
+		else
+			i++;
+	}
+	return (newt);
+}
+
+char	**split_quotes(char *str, char **newt, int *i)
+{
+	char	quote;
+	int		j;
+	int		k;
+	int		size;
+	char	**tmp;
+
+	j = 0;
+	k = -1;
+	size = *i;
+	quote = check_expansions(str[*i]);
+	tmp = ft_realloc2(newt);
+	while (tmp && tmp[j])
+		j++;
+	while (str[size] == quote)
+		size++;
+	while (str[size] && str[size] != quote)
+		size++;
+	tmp[j] = ft_strnew(size - *i);
+	while (++(*i) < size)
+		tmp[j][++k] = str[*i];
+	while (str[*i] == quote)
+		(*i)++;
+	return (tmp);
+}
+
+char	**extract_cmd(char *str, char **newt, int *i)
+{
+	int		j;
+	int		k;
+	int		size;
+	char	**tmp;
+
+	j = 0;
+	k = 0;
+	size = *i;
+	tmp = ft_realloc2(newt);
+	while (tmp && tmp[j] != 0)
+		j++;
+	while (str[size] && str[size] != ' ' && str[size] != '\t')
+		size++;
+	tmp[j] = ft_strnew(size - *i);
+	while (*i < size)
+	{
+		tmp[j][k] = str[*i];
+		k++;
+		(*i)++;
+	}
+	newt ? free(newt) : 0;
+	return (tmp);
+}
+
+char	check_expansions(char exp)
+{
+	if (exp == 40)
+		exp = 41;
+	else if (exp == 91)
+		exp = 93;
+	return (exp);
 }

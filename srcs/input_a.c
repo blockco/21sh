@@ -28,15 +28,21 @@ void	parse_a(t_parse *m_parse, char *str)
 	m_parse->end = m_parse->start;
 	while (str[m_parse->end] > 32 || m_parse->dq)
 	{
-		if (str[m_parse->end] == '"' && m_parse->dq)
+		if (str[m_parse->end] == m_parse->dqbuff && m_parse->dq)
 			m_parse->dq = 0;
-		else if (str[m_parse->end] == '"' && !m_parse->dq)
+		else if ((str[m_parse->end] == '"' || str[m_parse->end] == 39 || str[m_parse->end] == 40) && !m_parse->dq)
+		{
+			if (str[m_parse->end] == 40)
+				m_parse->dqbuff = 41;
+			else
+				m_parse->dqbuff = str[m_parse->end];
 			m_parse->dq = 1;
+		}
 		m_parse->end++;
 	}
 	m_parse->retstr[m_parse->count] = ft_strnew(m_parse->end - m_parse->start);
 	m_parse->i = 0;
-	if (str[m_parse->start] == '"' && str[ft_strlen(str) - 1] == '"')
+	if ((str[m_parse->start] == '"' && str[ft_strlen(str) - 1] == '"') || (str[m_parse->start] == 39 && str[ft_strlen(str) - 1] == 39) || (str[m_parse->start] == 40 && str[ft_strlen(str) - 1] == 41))
 	{
 		m_parse->start++;
 		m_parse->end--;
@@ -56,7 +62,7 @@ char	**parseinput(char *str)
 
 	m_parse = malloc(sizeof(t_parse));
 	setstruct(m_parse);
-	if (NULL == ft_strchr(str, '"'))
+	if (NULL == ft_strchr(str, '"') && NULL == ft_strchr(str, 39) && NULL == ft_strchr(str, 40))
 		return (ft_strsplit(str, ' '));
 	m_parse->retstr = (char**)malloc(sizeof(char*) * (inputsize(str) + 1));
 	m_parse->retstr[inputsize(str)] = 0;

@@ -171,8 +171,8 @@ int		main(int argc, char **argv, char **envp)
 		{
 			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
-			// temp = parseinput(use);
-			temp = new_parse(use);
+			// temp = twsplit(use);
+			temp = parseinput(cmds[i]);
 			temp = check_file_agg(temp);
 			if (temp[0] == NULL)
 			{
@@ -182,7 +182,6 @@ int		main(int argc, char **argv, char **envp)
 			checkenv(temp, vect);
 			createcmds(head, temp);
 			curr = head;
-			// printlinkedcmds(head);
 			while (curr)
 			{
 				ret = loopredir(curr,vect,shell);
@@ -192,18 +191,12 @@ int		main(int argc, char **argv, char **envp)
 			}
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
-			// ft_putendl("here4");
-			// curr = NULL;
 			free_cmd_list(head);
-			// head = NULL;
-			// free(use);
 			i++;
+			freedub(cmds);
 			if (ret == -1)
 				break ;
-			// freedub(temp);
-			// ft_putendl("here2");
 		}
-		// ft_putendl("here3");
 		if (ret == -1)
 			break ;
 	}
