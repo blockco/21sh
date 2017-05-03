@@ -144,6 +144,7 @@ void createcmds(t_command *head, char **temp)
 					i++;
 					b++;
 				}
+				file_point->extra[b] = NULL;
 				if (temp[i] && getredir(temp[i]) == 1)
 				{
 					new->pipeout = 1;
@@ -172,7 +173,7 @@ void createcmds(t_command *head, char **temp)
 	}
 	temp -=  a;
 	ft_putendl("here1");
-	// c_args(head);
+	c_args(head);
 	// printlinkedcmds(head);
 	// free_cmd_list(head);
 }
