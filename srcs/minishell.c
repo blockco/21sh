@@ -90,6 +90,7 @@ int shellexit(t_shell *shell)
 	if (tcsetattr(0, TCSAFLUSH, &shell->old) < 0)
 		return (-1);
 	KEYS_OFF;
+	//free hist
 	exit(0);
 	return (0);
 }
@@ -181,7 +182,6 @@ int		main(int argc, char **argv, char **envp)
 		{
 			head = malloc(sizeof(t_command));
 			use = ft_strtrim(cmds[i]);
-			// temp = twsplit(use);
 			temp = parseinput(cmds[i]);
 			temp = check_file_agg(temp);
 			if (temp[0] == NULL)
@@ -196,21 +196,17 @@ int		main(int argc, char **argv, char **envp)
 			{
 				ret = loopredir(curr,vect,shell);
 				curr = curr->next;
-				if (ret == -1 || ret == -2)
+				if (ret == -1)
+					shellexit(shell);
+				if (ret == -2)
 					break;
 			}
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
 			free_cmd_list(head);
-			i++;
 			freedub(cmds);
-			if (ret == -1)
-				break ;
+			i++;
 		}
-		if (ret == -1)
-			break ;
 	}
-	shellexit(shell);
-	exit(0);
 	return (0);
 }
