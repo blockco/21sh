@@ -205,9 +205,9 @@ int		main(int argc, char **argv, char **envp)
 			dup2(shell->std_out, 1);
 			dup2(shell->std_in, 0);
 			free_cmd_list(head);
-			freedub(cmds);
 			i++;
 		}
+		freedub(cmds);
 	}
 	return (0);
 }
