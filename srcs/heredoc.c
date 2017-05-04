@@ -1,5 +1,22 @@
 #include "../headers/minishell.h"
 
+void print_help(int fd, char *ret)
+{
+	write(fd, ret, ft_strlen(ret));
+	write(fd, "\n", 1);
+}
+
+char *here_help(char *stopper, char *ret, int *going, int fd)
+{
+	ft_putendl("");
+	if (ft_strcmp(ret, stopper) == 0)
+		*going = 0;
+	else
+		print_help(fd, ret);
+	free (ret);
+	return (ft_strnew(0));
+}
+
 void	*read_tmp_here(t_shell *shell, char *stopper, int fd)
 {
 	char		*str1;
@@ -23,18 +40,7 @@ void	*read_tmp_here(t_shell *shell, char *stopper, int fd)
 			shell->lineinfo->size++;
 		}
 		if (str1[0] == 13)
-		{
-			ft_putendl("");
-			if (ft_strcmp(ret, stopper) == 0)
-				going = 0;
-			else
-			{
-				write(fd, ret, ft_strlen(ret));
-				write(fd, "\n", 1);
-			}
-			free (ret);
-			ret = ft_strnew(0);
-		}
+			ret = here_help(stopper, ret, &going, fd);
 	}
 	return (ret);
 }
