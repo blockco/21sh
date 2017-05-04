@@ -88,6 +88,15 @@
 # define C_RIGHT			"\[C"
 # define C_DOWN				"\[B"
 
+typedef struct	s_exec
+{
+	int		status;
+	int		pid;
+	int		err;
+	char	**env;
+	int		fd[2];
+}				t_exec;
+
 
 typedef struct	s_command
 {
