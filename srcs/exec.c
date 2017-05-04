@@ -35,7 +35,18 @@ void	runprog(t_command *curr, t_vector *vect)
 			close(fd[0]);
 		}
 		dup2(nice, 0);
-		err = execve(curr->args[0], curr->args, env);
+		if (ft_strequ(curr->args[0], "echo"))
+		{
+			err = echo_b(curr->args);
+			exit(0);
+		}
+		else if (ft_strequ(curr->args[0], "env"))
+		{
+			getenv_b(vect);
+			exit(0);
+		}
+		else
+			err = execve(curr->args[0], curr->args, env);
 	}
 	else if (pid < 0)
 	{
@@ -44,11 +55,9 @@ void	runprog(t_command *curr, t_vector *vect)
 		ft_putchar('\n');
 		exit(-1);
 	}
-	// signal(SIGINT, NULL);
 	wait(&status);
 	close(fd[1]);
 	nice = fd[0];
-	// free(test);
 }
 
 int		checkloc(t_command *curr, int size, t_vector *vect)

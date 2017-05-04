@@ -28,8 +28,7 @@ int	extendrun(t_command *curr, t_vector *vect)
 	}
 	if (curr->args[0] && ft_strcmp(curr->args[0], "echo") == 0)
 	{
-		if (curr->args[1])
-			echo_b(curr->args);
+		runprog(curr, vect);
 		return (1);
 	}
 	if (curr->args[0] && (ft_strcmp(curr->args[0], "exit") == 0
@@ -42,8 +41,7 @@ int	runbuilt(t_command *curr, t_vector *vect)
 {
 	if (curr->args[0] && ft_strcmp(curr->args[0], "env") == 0)
 	{
-		getenv_b(vect);
-		return (1);
+		runprog(curr, vect);
 	}
 	if (curr->args[0] && ft_strcmp(curr->args[0], "cd") == 0)
 	{

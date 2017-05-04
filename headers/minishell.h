@@ -204,7 +204,7 @@ void			changedirs(char *path, t_vector *vect);
 int				findenvvarint(t_vector *vect, char *str);
 void			setenv_b(char *key, char *val, t_vector *vect);
 void			unsetenv_b(char *key, t_vector *vect);
-void			echo_b(char **temp);
+int			echo_b(char **temp);
 void			gohome(t_vector *vect, char *cwd);
 void			goback(t_vector *vect, char *cwd);
 void			print_interp();

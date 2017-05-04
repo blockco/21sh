@@ -39,7 +39,7 @@ int		nflagfind(char *temp)
 	return (0);
 }
 
-void	echo_b(char **temp)
+int	echo_b(char **temp)
 {
 	int i;
 	int x;
@@ -62,4 +62,5 @@ void	echo_b(char **temp)
 		x = 1;
 	}
 	printend(x, nflag);
+	return 1;
 }
