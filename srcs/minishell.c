@@ -203,10 +203,10 @@ int		main(int argc, char **argv, char **envp)
 			dup2(shell->std_in, 0);
 			free_cmd_list(head);
 			i++;
-			freedub(cmds);
 			if (ret == -1)
 				break ;
 		}
+		freedub(cmds);
 		if (ret == -1)
 			break ;
 	}
