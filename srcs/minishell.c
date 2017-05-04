@@ -90,6 +90,7 @@ int shellexit(t_shell *shell)
 	if (tcsetattr(0, TCSAFLUSH, &shell->old) < 0)
 		return (-1);
 	KEYS_OFF;
+	freeshell(shell);
 	//free hist
 	exit(0);
 	return (0);

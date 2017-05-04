@@ -124,8 +124,6 @@ typedef struct	s_shell
 	int				std_out;
 	int				std_in;
 	t_vector		*history;
-	t_vector		*sorted_h;
-	t_command		*cmd;
 	t_lineman		*lineinfo;
 }				t_shell;
 
@@ -146,6 +144,8 @@ char	**extract_cmd(char *str, char **newt, int *i);
 char	check_expansions(char exp);
 char	**twsplit(char *str);
 
+
+void freeshell(t_shell *shell);
 int shellexit(t_shell *shell);
 
 //file agg
