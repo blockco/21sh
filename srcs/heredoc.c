@@ -25,8 +25,6 @@ void	*read_tmp_here(t_shell *shell, char *stopper, int fd)
 		if (str1[0] == 13)
 		{
 			ft_putendl("");
-			// ft_putendl(ret);
-			// ret[ft_strlen(ret) - 1] = '\0';
 			if (ft_strcmp(ret, stopper) == 0)
 				going = 0;
 			else
