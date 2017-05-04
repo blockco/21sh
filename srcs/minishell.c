@@ -116,10 +116,17 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 	int fd;
 	t_file *h_file;
 
+	ret = 0;
 	h_file = curr->head_file;
 	while (h_file && checkcmd(curr->args[0], getbins(vect)))
 	{
 		fd = openfile(h_file);
+		if (fd == -1)
+		{
+			ft_putendl("file does not exist");
+			ret = -2;
+			break;
+		}
 		if (h_file->redir == 2 || h_file->redir == 3)
 			dup2(fd, 1);
 		if (h_file->redir == 4)
@@ -134,8 +141,11 @@ int loopredir(t_command *curr, t_vector *vect, t_shell *shell)
 		close(fd);
 		h_file = h_file->next;
 	}
-	ret = runbuilt(curr, vect);
-	logicrun(ret, curr, vect);
+	if (ret != -2)
+	{
+		ret = runbuilt(curr, vect);
+		logicrun(ret, curr, vect);
+	}
 	return (ret);
 }
 
@@ -186,7 +196,7 @@ int		main(int argc, char **argv, char **envp)
 			{
 				ret = loopredir(curr,vect,shell);
 				curr = curr->next;
-				if (ret == -1)
+				if (ret == -1 || ret == -2)
 					break;
 			}
 			dup2(shell->std_out, 1);
