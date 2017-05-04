@@ -171,6 +171,5 @@ void createcmds(t_command *head, char **temp)
 		temp += i;
 	}
 	temp -=  a;
-	freedub(temp);
 	c_args(head);
 }

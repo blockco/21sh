@@ -39,20 +39,7 @@ void termresetline(t_shell *shell)
 void initshellstruct(t_shell *shell)
 {
 	shell->history = vect_new(32, sizeof(char*));
+	shell->sorted_h = vect_new(32, sizeof(char*));
+	shell->cmd = malloc(sizeof(t_command));
 	shell->lineinfo = malloc(sizeof(t_lineman));
-}
-
-void freeshell(t_shell *shell)
-{
-	int i;
-
-	i = 0;
-	while (i < (int)shell->history->size)
-	{
-		free(*(char **)vectspot(i, shell->history));
-		vect_delete(shell->history,i);
-		i++;
-	}
-	free (shell->history);
-	free(shell->lineinfo);
 }

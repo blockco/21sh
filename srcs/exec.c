@@ -12,51 +12,52 @@
 
 #include "../headers/minishell.h"
 
-void run_child_build(t_command *curr, t_exec test, int nice, t_vector *vect)
-{
-	signal(SIGINT, SIG_DFL);
-	if (curr->next)
-	{
-		dup2(test.fd[1],1);
-		close(test.fd[0]);
-	}
-	dup2(nice, 0);
-	if (ft_strequ(curr->args[0], "echo"))
-	{
-		test.err = echo_b(curr->args);
-		exit(0);
-	}
-	else if (ft_strequ(curr->args[0], "env"))
-	{
-		getenv_b(vect);
-		exit(0);
-	}
-	else
-		test.err = execve(curr->args[0], curr->args, test.env);
-}
-
 void	runprog(t_command *curr, t_vector *vect)
 {
-	t_exec test;
+	int		status;
+	int		pid;
+	int		err;
+	char	**env;
+	int		fd[2];
 	static int nice = 0;
 
-	test.env = cpenv_b(vect);
+	env = cpenv_b(vect);
 
 	if (curr->next)
-		pipe(test.fd);
-	test.pid = fork();
-	if (test.pid == 0)
-		run_child_build(curr, test, nice, vect);
-	else if (test.pid < 0)
+		pipe(fd);
+	pid = fork();
+	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+		if (curr->next)
+		{
+			dup2(fd[1],1);
+			close(fd[0]);
+		}
+		dup2(nice, 0);
+		if (ft_strequ(curr->args[0], "echo"))
+		{
+			err = echo_b(curr->args);
+			exit(0);
+		}
+		else if (ft_strequ(curr->args[0], "env"))
+		{
+			getenv_b(vect);
+			exit(0);
+		}
+		else
+			err = execve(curr->args[0], curr->args, env);
+	}
+	else if (pid < 0)
 	{
 		ft_putstr("fork failed with error code ");
-		ft_putnbr(test.pid);
+		ft_putnbr(pid);
 		ft_putchar('\n');
 		exit(-1);
 	}
-	wait(&test.status);
-	close(test.fd[1]);
-	nice = test.fd[0];
+	wait(&status);
+	close(fd[1]);
+	nice = fd[0];
 }
 
 int		checkloc(t_command *curr, int size, t_vector *vect)
